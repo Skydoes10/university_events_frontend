@@ -1,6 +1,7 @@
 import { Assistant } from './assistant';
 import { EventLocation } from './eventLocation';
 import { Organizer } from './organizer';
+import { Comment } from './comment';
 
 export interface Event {
 	id: string;

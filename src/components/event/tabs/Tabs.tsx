@@ -1,7 +1,14 @@
 'use client';
 import React, { useState } from 'react';
+import { CommentList } from '../comments/CommentList';
+import { Assistant, Comment } from '@/interfaces';
 
-export const Tabs = () => {
+interface Props {
+	comments: Comment[];
+	assistants: Assistant[];
+}
+
+export const Tabs = ({ comments, assistants }: Props) => {
 	const [openTab, setOpenTab] = useState<number>(1);
 
 	return (
@@ -12,7 +19,7 @@ export const Tabs = () => {
 				<button
 					onClick={() => setOpenTab(1)}
 					className={`flex-1 py-2 px-4 rounded-md focus:outline-none focus:shadow-outline-blue transition-all duration-300 ${
-						openTab === 1 ? 'bg-gray-300 text-white' : ''
+						openTab === 1 ? 'btn-primary text-white' : ''
 					}`}
 				>
 					Comentarios
@@ -20,7 +27,7 @@ export const Tabs = () => {
 				<button
 					onClick={() => setOpenTab(2)}
 					className={`flex-1 py-2 px-4 rounded-md focus:outline-none focus:shadow-outline-blue transition-all duration-300 ${
-						openTab === 2 ? 'bg-gray-300 text-white' : ''
+						openTab === 2 ? 'btn-primary text-white' : ''
 					}`}
 				>
 					Conferencistas
@@ -28,7 +35,7 @@ export const Tabs = () => {
 				<button
 					onClick={() => setOpenTab(3)}
 					className={`flex-1 py-2 px-4 rounded-md focus:outline-none focus:shadow-outline-blue transition-all duration-300 ${
-						openTab === 3 ? 'bg-gray-300 text-white' : ''
+						openTab === 3 ? 'btn-primary text-white' : ''
 					}`}
 				>
 					Asistentes
@@ -36,16 +43,9 @@ export const Tabs = () => {
 			</div>
 
 			{openTab === 1 && (
-				<div className="transition-all duration-300 bg-white p-4 rounded-lg shadow-md border-l-4">
-					<h2 className="text-2xl font-semibold mb-2 text-blue-600">
-						Section 1 Content
-					</h2>
-					<p className="text-gray-700">
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-						Nullam aliquam justo nec justo lacinia, vel ullamcorper
-						nibh tincidunt.
-					</p>
-				</div>
+					<CommentList comments={comments} />
+				// <div className="transition-all duration-300 bg-white p-4 rounded-lg shadow-md border-l-4">
+				// </div>
 			)}
 
 			{openTab === 2 && (

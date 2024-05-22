@@ -19,7 +19,7 @@ export default function EventPage({ params }: Props) {
 	}
 
 	return (
-		<div className="container mx-auto p-4 h-screen fade-in">
+		<div className="container mx-auto p-4 fade-in">
 			<Title title={event.title} className="mb-2" />
 
 			<div className="flex flex-wrap justify-between">
@@ -65,7 +65,10 @@ export default function EventPage({ params }: Props) {
 				</div>
 
 				<div className="w-full mt-4">
-					<Tabs />
+					<Tabs
+						comments={event.comments}
+						assistants={event.assistants}
+					/>
 				</div>
 			</div>
 		</div>

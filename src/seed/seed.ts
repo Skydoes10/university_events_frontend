@@ -25,7 +25,22 @@ export const initialData: SeedData = {
 					country: 'Colombia',
 				},
 			},
-			comments: [],
+			comments: [
+				{
+					user: {
+						fullName: 'Juan Perez',
+						username: 'juanperez',
+					},
+					text: 'Excelente evento, muy buena organización',
+				},
+				{
+					user: {
+						fullName: 'Maria Rodriguez',
+						username: 'mariarodriguez',
+					},
+					text: 'Me encantó, espero el próximo año',
+				},
+			],
 		},
 		{
 			id: '2',

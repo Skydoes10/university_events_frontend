@@ -7,7 +7,6 @@ interface Props {
 
 export const EventList = ({ events }: Props) => {
 	return (
-		// <div className="px-4 sm:px-8 py-4">
 		<div className="flex flex-col sm:justify-center sm:items-center mb-72 px-4 sm:px-8 py-4">
 			<div className="inline-block min-w-full shadow rounded-lg overflow-hidden">
 				<table className="min-w-full leading-normal">
