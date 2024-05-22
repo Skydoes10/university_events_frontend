@@ -14,7 +14,20 @@ export const initialData: SeedData = {
 			date: new Date('2024-01-01'),
 			organizingFaculties: [],
 			organizingPrograms: [],
-			speakers: [],
+			speakers: [
+				{
+					fullName: 'Test Speaker Fullname 1',
+					username: 'TestSpeakerUsername1',
+				}, 
+				{
+					fullName: 'Test Speaker Fullname 2',
+					username: 'TestSpeakerUsername2',
+				}, 
+				{
+					fullName: 'Test Speaker Fullname 3',
+					username: 'TestSpeakerUsername3',
+				}
+			],
 			assistants: [],
 			eventLocation: {
 				name: 'Auditorio Argos',
