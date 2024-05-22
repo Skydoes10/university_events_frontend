@@ -4,6 +4,7 @@ import { CommentList } from '../comments/CommentList';
 import { Assistant, Comment } from '@/interfaces';
 import { Speaker } from '@/interfaces/speaker';
 import { SpeakerList } from '../speakers/SpeakerList';
+import { AssistantList } from '../assistants/AssistantList';
 
 interface Props {
 	comments: Comment[];
@@ -56,16 +57,7 @@ export const Tabs = ({ comments, assistants, speakers }: Props) => {
 			)}
 
 			{openTab === 3 && (
-				<div className="transition-all duration-300 bg-white p-4 rounded-lg shadow-md border-l-4">
-					<h2 className="text-2xl font-semibold mb-2 text-blue-600">
-						Section 3 Content
-					</h2>
-					<p className="text-gray-700">
-						Proin non velit ac purus malesuada venenatis sit amet
-						eget lacus. Morbi quis purus id ipsum ultrices aliquet
-						Morbi quis.
-					</p>
-				</div>
+				<AssistantList assistants={assistants} />	
 			)}
 		</div>
 		// 	</div>
