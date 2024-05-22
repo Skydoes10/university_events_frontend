@@ -2,13 +2,16 @@
 import React, { useState } from 'react';
 import { CommentList } from '../comments/CommentList';
 import { Assistant, Comment } from '@/interfaces';
+import { Speaker } from '@/interfaces/speaker';
+import { SpeakerList } from '../speakers/SpeakerList';
 
 interface Props {
 	comments: Comment[];
 	assistants: Assistant[];
+	speakers: Speaker[];
 }
 
-export const Tabs = ({ comments, assistants }: Props) => {
+export const Tabs = ({ comments, assistants, speakers }: Props) => {
 	const [openTab, setOpenTab] = useState<number>(1);
 
 	return (
@@ -49,16 +52,7 @@ export const Tabs = ({ comments, assistants }: Props) => {
 			)}
 
 			{openTab === 2 && (
-				<div className="transition-all duration-300 bg-white p-4 rounded-lg shadow-md border-l-4">
-					<h2 className="text-2xl font-semibold mb-2 text-blue-600">
-						Section 2 Content
-					</h2>
-					<p className="text-gray-700">
-						Proin non velit ac purus malesuada venenatis sit amet
-						eget lacus. Morbi quis purus id ipsum ultrices aliquet
-						Morbi quis.
-					</p>
-				</div>
+				<SpeakerList speakers={speakers} />		
 			)}
 
 			{openTab === 3 && (

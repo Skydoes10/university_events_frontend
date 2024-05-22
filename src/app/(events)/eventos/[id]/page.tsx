@@ -68,6 +68,7 @@ export default function EventPage({ params }: Props) {
 					<Tabs
 						comments={event.comments}
 						assistants={event.assistants}
+						speakers={event.speakers}
 					/>
 				</div>
 			</div>
