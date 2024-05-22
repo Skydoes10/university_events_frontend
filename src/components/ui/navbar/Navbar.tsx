@@ -13,7 +13,7 @@ export const Navbar = () => {
 		<nav className="flex px-5 py-4 justify-between items-center w-full shadow-sm">
 			<div>
 				{/* Logo */}
-				<Link href="/eventos">
+				<Link href="/">
 					<span
 						className={`${titleFonts.className} antialiased font-bold`}
 					>
@@ -26,7 +26,7 @@ export const Navbar = () => {
 			<div className="hidden sm:block">
 				<Link
 					className="m-2 p-2 rounded-md transition-all hover:bg-gray-100"
-					href="/eventos"
+					href="/"
 				>
 					Eventos
 				</Link>

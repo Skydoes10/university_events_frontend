@@ -32,7 +32,7 @@ export const EventListItem = ({ event }: Props) => {
 		event.eventLocation.city.country;
 
 	const handleClick = () => {
-		router.push(`/eventos/${event.id}`);
+		router.push(`/evento/${event.id}`);
 	};
 
 	return (
