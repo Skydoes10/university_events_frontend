@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 
 import { initialData } from '@/seed/seed';
-import { Title } from '@/components';
+import { Tabs, Title } from '@/components';
 
 interface Props {
 	params: {
@@ -19,7 +19,7 @@ export default function EventPage({ params }: Props) {
 	}
 
 	return (
-		<div className="container mx-auto p-4 h-screen">
+		<div className="container mx-auto p-4 h-screen fade-in">
 			<Title title={event.title} className="mb-2" />
 
 			<div className="flex flex-wrap justify-between">
@@ -62,6 +62,10 @@ export default function EventPage({ params }: Props) {
 							<strong>Categorías:</strong>
 						</span>
 					</div>
+				</div>
+
+				<div className="w-full mt-4">
+					<Tabs />
 				</div>
 			</div>
 		</div>

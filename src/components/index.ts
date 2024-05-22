@@ -1,3 +1,5 @@
+export * from './event/Tabs';
+
 export * from './events/event-list/EventList';
 export * from './events/event-list/EventListItem';
 

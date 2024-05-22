@@ -13,7 +13,7 @@ export const Navbar = () => {
 		<nav className="flex px-5 py-4 justify-between items-center w-full shadow-sm">
 			<div>
 				{/* Logo */}
-				<Link href="/">
+				<Link href="/eventos">
 					<span
 						className={`${titleFonts.className} antialiased font-bold`}
 					>
