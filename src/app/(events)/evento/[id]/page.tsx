@@ -1,7 +1,10 @@
+'use client';
 import { notFound } from 'next/navigation';
+import { useSelector } from 'react-redux';
 
 import { initialData } from '@/seed/seed';
 import { Tabs, Title } from '@/components';
+import { UserState } from '@/features/user/userSlice';
 
 interface Props {
 	params: {
@@ -11,6 +14,12 @@ interface Props {
 
 export default function EventPage({ params }: Props) {
 	const { id } = params;
+	const user = useSelector((state: UserState) => state.user);
+	// const currentEvent = useSelector((state) => state.currentEvent);
+
+	// const isAssistant = currentEvent.assistants.find(
+	// 	(assistant) => assistant.id === user.id
+	// );
 
 	const event = initialData.events.find((event) => event.id === id);
 
@@ -20,7 +29,19 @@ export default function EventPage({ params }: Props) {
 
 	return (
 		<div className="container mx-auto p-4 fade-in">
-			<Title title={event.title} className="mb-2" />
+			<div className="flex flex-wrap items-center">
+				<Title title={event.title} className="mb-2" />
+
+				{/* {isAssistant ? (
+					<span className="bg-green-500 text-white font-bold py-1 px-2 rounded-lg text-sm ml-4">
+						Asistirás a este evento
+					</span>
+				) : (
+					<button className="bg-blue-500 text-white font-bold py-1 px-2 rounded-lg text-sm ml-4">
+						Asistir a este evento
+					</button>
+				)} */}
+			</div>
 
 			<div className="flex flex-wrap justify-between">
 				<div className="w-full md:w-7/12">

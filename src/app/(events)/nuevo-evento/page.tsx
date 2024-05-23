@@ -96,13 +96,13 @@ export default function NewEventPage() {
 							<SpeakerList speakers={[]} />
 						</div>
 					</div>
-
-					<div className="flex flex-col mb-2 mt-4 sm:mt-6">
-						<input
+					<div className="flex flex-col mb-2 mt-4 mr-5 sm:mt-6">
+						<button
 							type="submit"
-							value="Añadir evento"
-							className="btn-primary flex w-full sm:w-1/2 justify-center font-bold"
-						/>
+							className="btn-primary flex w-full sm:w-1/2 justify-center font-bold cursor-pointer"
+						>
+							Añadir evento
+						</button>
 					</div>
 				</form>
 			</div>

@@ -22,24 +22,23 @@ export const Tabs = ({ comments, assistants, speakers }: Props) => {
 			<div className="mb-4 flex space-x-4 bg-white p-2 rounded-lg shadow-sm">
 				<button
 					onClick={() => setOpenTab(1)}
-					className={`flex-1 py-2 px-4 rounded-md focus:outline-none focus:shadow-outline-blue transition-all duration-300 ${
-						openTab === 1 ? 'btn-primary text-white' : ''
-					}`}
+					className={`flex-1 py-2 px-4 focus:outline-none focus:shadow-outline-blue transition-all duration-300 hover:bg-blue-100
+					${openTab === 1 ? 'border-b-2 border-blue-500' : ''}`}
 				>
 					Comentarios
 				</button>
 				<button
 					onClick={() => setOpenTab(2)}
-					className={`flex-1 py-2 px-4 rounded-md focus:outline-none focus:shadow-outline-blue transition-all duration-300 ${
-						openTab === 2 ? 'btn-primary text-white' : ''
+					className={`flex-1 py-2 px-4 focus:outline-none focus:shadow-outline-blue transition-all duration-300 hover:bg-blue-100 ${
+						openTab === 2 ? 'border-b-2 border-blue-500' : ''
 					}`}
 				>
 					Conferencistas
 				</button>
 				<button
 					onClick={() => setOpenTab(3)}
-					className={`flex-1 py-2 px-4 rounded-md focus:outline-none focus:shadow-outline-blue transition-all duration-300 ${
-						openTab === 3 ? 'btn-primary text-white' : ''
+					className={`flex-1 py-2 px-4 focus:outline-none focus:shadow-outline-blue transition-all duration-300 hover:bg-blue-100 ${
+						openTab === 3 ? 'border-b-2 border-blue-500' : ''
 					}`}
 				>
 					Asistentes

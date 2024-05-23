@@ -1,12 +1,12 @@
 export interface User {
-	id: string;
+	id?: string;
 	identifier: string;
 	username: string;
-	full_name: string;
+	fullName: string;
 	email: string;
 	city: string;
 	relationship_type: string;
-	is_admin: boolean;
+	isAdmin?: boolean;
 }
 
 export interface UserResponse {

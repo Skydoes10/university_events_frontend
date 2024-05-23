@@ -1,9 +1,11 @@
 'use client';
 import { useRouter } from 'next/navigation';
+import { useSelector } from 'react-redux';
 import { MdDeleteOutline } from 'react-icons/md';
 import moment from 'moment';
 
 import { Event } from '@/interfaces';
+import { UserState } from '@/features/user/userSlice';
 
 interface Props {
 	event: Event;
@@ -11,6 +13,7 @@ interface Props {
 
 export const EventListItem = ({ event }: Props) => {
 	const router = useRouter();
+	const user = useSelector((state: UserState) => state.user);
 
 	const date = moment(event.date).format('DD MMM YYYY HH:mm a');
 
@@ -74,12 +77,14 @@ export const EventListItem = ({ event }: Props) => {
 				<p className="text-gray-900 whitespace-no-wrap">{city}</p>
 			</td>
 			<td className=" border-b border-gray-200 bg-white text-sm">
-				<button
-					onClick={() => console.log('delete')}
-					className="focus:outline-none hover:bg-red-100 p-3 rounded-full"
-				>
-					<MdDeleteOutline className="w-5 h-5" />
-				</button>
+				{user.isAdmin && (
+					<button
+						onClick={() => console.log('delete')}
+						className="focus:outline-none hover:bg-red-100 p-3 rounded-full"
+					>
+						<MdDeleteOutline className="w-5 h-5" />
+					</button>
+				)}
 			</td>
 		</tr>
 	);

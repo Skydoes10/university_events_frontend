@@ -8,8 +8,14 @@ export interface UserState {
 
 const initialState: UserState = {
 	user: {
+		id: '',
+		identifier: '',
 		fullName: '',
 		username: '',
+		email: '',
+		city: '',
+		relationship_type: '',
+		isAdmin: false,
 	},
 };
 

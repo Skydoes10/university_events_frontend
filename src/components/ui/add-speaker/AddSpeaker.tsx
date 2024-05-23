@@ -1,4 +1,6 @@
 'use client';
+import { NewSpeakerEmployeeForm } from '@/components/new-speaker/NewSpeakerEmployeeForm';
+import { NewSpeakerForm } from '@/components/new-speaker/NewSpeakerForm';
 import { useState } from 'react';
 
 export const AddSpeaker = () => {
@@ -99,40 +101,10 @@ export const AddSpeaker = () => {
 									</div>
 
 									{isEmployee ? (
-										<div className="flex flex-col gap-1 fade-in">
-											<span>Correo electrónico</span>
-											<input
-												type="email"
-												className="p-2 border rounded-md bg-white focus:outline-none"
-												required
-											/>
-										</div>
+										<NewSpeakerEmployeeForm />
 									) : (
-										<div className="grid grid-cols-1 gap-2 sm:gap-5 sm:grid-cols-2 fade-in">
-											<div className="flex flex-col gap-1">
-												<span>Nombre</span>
-												<input
-													type="text"
-													className="p-2 border rounded-md bg-white focus:outline-none"
-													required
-												/>
-											</div>
-											<div className="flex flex-col gap-1">
-												<span>Apellido</span>
-												<input
-													type="text"
-													className="p-2 border rounded-md bg-white focus:outline-none"
-													required
-												/>
-											</div>
-										</div>
+										<NewSpeakerForm />
 									)}
-								</div>
-								{/* Footer */}
-								<div className="flex justify-end pt-2">
-									<button className="focus:outline-none px-4 btn-primary p-3 ml-3 rounded-lg text-white hover:bg-blue-700">
-										Añadir
-									</button>
 								</div>
 							</form>
 						</div>
