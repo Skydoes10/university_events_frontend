@@ -1,31 +1,90 @@
-import { Title } from '@/components';
+'use client';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import * as z from 'zod';
+import { Title } from '@/components';
+import { loginSchema } from '@/schemas';
+import { useLogin } from '@/hooks/auth/useLogin';
 
+type FormData = z.infer<typeof loginSchema>;
 export default function LoginPage() {
+	const { login } = useLogin();
+	const router = useRouter();
+	const {
+		handleSubmit,
+		register,
+		formState: { errors, isSubmitting, isDirty, isValid },
+	} = useForm<FormData>({
+		resolver: zodResolver(loginSchema),
+	});
+
+	async function onSubmit(data: FormData) {
+		console.log(isSubmitting);
+		console.log(data);
+
+		// const user = { email: data.email, password: data.password };
+		// await login(user);
+
+		await new Promise<void>((resolve) => {
+			setTimeout(() => {
+				resolve();
+			}, 2000); // 2 seconds in milliseconds
+		});
+
+		router.push('/');
+	}
+
 	return (
 		<>
 			<Title title="Iniciar sesión" />
 
-			<form className="flex flex-col gap-4">
+			<form
+				className="flex flex-col gap-4"
+				action=""
+				method="POST"
+				onSubmit={handleSubmit(onSubmit)}
+			>
 				<div className="flex flex-col mb-2 gap-1">
 					<span>Correo electrónico</span>
 					<input
+						{...register('email', { required: true })}
+						id="email"
+						name="email"
 						type="email"
 						className="p-2 border rounded-md bg-gray-200 focus:outline-none"
-						required
 					/>
+					{errors?.email && (
+						<span className="text-red-500 text-sm">
+							{errors?.email?.message}
+						</span>
+					)}
 				</div>
 
 				<div className="flex flex-col mb-2 gap-1">
 					<span>Contraseña</span>
 					<input
+						{...register('password', { required: true })}
+						id="password"
+						name="password"
 						type="password"
 						className="p-2 border rounded-md bg-gray-200 focus:outline-none"
-						required
 					/>
+					{errors?.password && (
+						<span className="text-red-500 text-sm">
+							{errors?.password?.message}
+						</span>
+					)}
 				</div>
 
-				<button className="btn-primary font-bold">Ingresar</button>
+				<button
+					type="submit"
+					disabled={!isDirty || isSubmitting}
+					className="btn-primary font-bold cursor-pointer disabled:opacity-70"
+				>
+					Ingresar
+				</button>
 			</form>
 
 			<div className="flex justify-center mt-4">

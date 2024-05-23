@@ -3,13 +3,13 @@ import { useDispatch } from 'react-redux';
 import { authService } from '@/services';
 import { UserResponse } from '@/interfaces';
 import { setUser } from '@/features/user/userSlice';
-import { LoginUser } from '@/schemas';
+import { RegisterUser } from '@/schemas';
 
-export const useLogin = () => {
+export const useRegister = () => {
 	const dispatch = useDispatch();
-	const login = async (user: LoginUser) => {
+	const register = async (user: RegisterUser) => {
 		try {
-			const res: UserResponse = await authService.login(user);
+			const res: UserResponse = await authService.register(user);
 			if (res) {
 				Cookies.set('accessToken', res.accessToken);
 				dispatch(setUser(res.user));
@@ -19,5 +19,5 @@ export const useLogin = () => {
 		}
 	};
 
-	return { login };
+	return { register };
 };
