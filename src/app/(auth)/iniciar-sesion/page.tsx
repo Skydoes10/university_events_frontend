@@ -6,7 +6,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import { Title } from '@/components';
 import { loginSchema } from '@/schemas';
-import { useLogin } from '@/hooks/auth/useLogin';
+import { useLogin } from '@/hooks';
 
 type FormData = z.infer<typeof loginSchema>;
 export default function LoginPage() {

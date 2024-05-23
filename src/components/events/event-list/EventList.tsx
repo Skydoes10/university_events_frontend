@@ -7,7 +7,7 @@ interface Props {
 
 export const EventList = ({ events }: Props) => {
 	return (
-		<div className="flex flex-col sm:justify-center sm:items-center mb-72 px-4 sm:px-8 py-4">
+		<div className="flex flex-col sm:justify-center sm:items-center mb-96 px-4 sm:px-8 py-4">
 			<div className="inline-block min-w-full shadow rounded-lg overflow-hidden">
 				<table className="min-w-full leading-normal">
 					<thead>
@@ -31,9 +31,22 @@ export const EventList = ({ events }: Props) => {
 						</tr>
 					</thead>
 					<tbody>
-						{events.map((event) => (
-							<EventListItem key={event.id} event={event} />
-						))}
+						{events.length > 0 ? (
+							events.map((event) => (
+								<EventListItem key={event.id} event={event} />
+							))
+						) : (
+							<tr>
+								<td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+									Aún no hay eventos
+								</td>
+								<td className="px-5 py-5 border-b border-gray-200 bg-white text-sm"></td>
+								<td className="px-5 py-5 border-b border-gray-200 bg-white text-sm"></td>
+								<td className="px-5 py-5 border-b border-gray-200 bg-white text-sm"></td>
+								<td className="px-5 py-5 border-b border-gray-200 bg-white text-sm"></td>
+								<td className="px-5 py-5 border-b border-gray-200 bg-white text-sm"></td>
+							</tr>
+						)}
 					</tbody>
 				</table>
 			</div>

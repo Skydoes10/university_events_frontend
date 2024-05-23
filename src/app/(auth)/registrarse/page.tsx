@@ -6,7 +6,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import { Title } from '@/components';
 import { registerSchema } from '@/schemas';
-import { useRegister } from '@/hooks/auth/useRegister';
+import { useRegister } from '@/hooks';
 
 type FormData = z.infer<typeof registerSchema>;
 
