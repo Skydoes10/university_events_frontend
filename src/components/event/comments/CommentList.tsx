@@ -8,7 +8,7 @@ interface Props {
 
 export const CommentList = ({ comments }: Props) => {
 	return (
-		<div className="transition-all duration-300 bg-white p-4 rounded-lg shadow-md border-l-4 mb-2">
+		<div className="transition-all duration-300 bg-white p-4 rounded-lg shadow-md mb-2">
 			<AddComment />
 			{comments.length > 0 ? (
 				comments.map((comment) => (

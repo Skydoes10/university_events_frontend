@@ -1,13 +1,17 @@
 'use client';
 import React, { useState, useEffect, useRef } from 'react';
 
+interface Props {
+	required: boolean;
+}
+
 interface Option {
 	value: string;
 	text: string;
 	selected: boolean;
 }
 
-export const Selector = () => {
+export const Selector = ({ required }: Props) => {
 	const [options, setOptions] = useState<Option[]>([]);
 	const [selected, setSelected] = useState<number[]>([]);
 	const [show, setShow] = useState(false);
@@ -59,7 +63,11 @@ export const Selector = () => {
 	return (
 		// <div className="w-full md:w-1/2 flex flex-col items-center h-64 mx-auto">
 		<div className="">
-			<select ref={selectRef} style={{ display: 'none' }} required>
+			<select
+				ref={selectRef}
+				style={{ display: 'none' }}
+				required={required}
+			>
 				<option value="1">Option 2</option>
 				<option value="2">Option 3</option>
 				<option value="3">Option 4</option>
@@ -71,16 +79,16 @@ export const Selector = () => {
 					type="hidden"
 					value={selectedValues().join(',')}
 				/>
-				<div className="inline-block relative w-64">
+				<div className="inline-block relative w-full">
 					<div className="flex flex-col items-center relative">
 						<div onClick={() => setShow(!show)} className="w-full">
 							{/* <div className="my-2 p-1 flex border border-gray-200 bg-white rounded"> */}
-							<div className="p-2 border border-gray-200 flex rounded-md bg-gray-200">
+							<div className="p-2 border border-gray-200 flex rounded-md bg-white">
 								<div className="flex flex-auto flex-wrap">
 									{selected.map((index) => (
 										<div
 											key={options[index].value}
-											className="flex justify-center items-center m-1 font-medium py-1 px-2 bg-white rounded-full text-teal-700 border border-teal-300"
+											className="flex justify-center items-center m-1 font-medium py-1 px-2 bg-white rounded-full text-blue-700 border border-blue-300"
 										>
 											<div className="text-xs font-normal leading-none max-w-full flex-initial">
 												{options[index].text}
@@ -105,7 +113,7 @@ export const Selector = () => {
 									{selected.length === 0 && (
 										<div className="flex-1">
 											<input
-												placeholder="Select an option"
+												placeholder="Selecciona al menos una opción"
 												className="bg-transparent p-1 px-2 appearance-none outline-none h-full w-full text-gray-800"
 												value={selectedValues().join(
 													', '
@@ -143,12 +151,12 @@ export const Selector = () => {
 						</div>
 						{show && (
 							<div className="w-full px-4">
-								<div className="absolute shadow top-100 bg-gray-200 z-40 w-full left-0 rounded max-h-select overflow-y-auto">
+								<div className="absolute shadow top-100 bg-white z-40 w-full left-0 rounded max-h-select overflow-y-auto">
 									<div className="flex flex-col w-full">
 										{options.map((option, index) => (
 											<div key={option.value}>
 												<div
-													className="cursor-pointer w-full border-gray-200 rounded-t border-b hover:bg-teal-100"
+													className="cursor-pointer w-full border-gray-200 rounded-t border-b hover:bg-blue-100"
 													onClick={() =>
 														handleSelect(index)
 													}

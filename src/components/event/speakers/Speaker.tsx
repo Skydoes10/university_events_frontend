@@ -1,4 +1,4 @@
-import { Speaker } from "@/interfaces/speaker";
+import { Speaker } from "@/interfaces";
 
 interface Props {
     speaker: Speaker;

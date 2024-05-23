@@ -7,7 +7,7 @@ export default function SignUpPage() {
 			<Title title="Registrarse" />
 
 			<form className="flex flex-col gap-4">
-				<div className="flex flex-col mb-2">
+				<div className="flex flex-col mb-2 gap-1">
 					<span>Nombre</span>
 					<input
 						type="text"
@@ -16,7 +16,7 @@ export default function SignUpPage() {
 					/>
 				</div>
 
-				<div className="flex flex-col mb-2">
+				<div className="flex flex-col mb-2 gap-1">
 					<span>Apellido</span>
 					<input
 						type="text"
@@ -25,7 +25,7 @@ export default function SignUpPage() {
 					/>
 				</div>
 
-				<div className="flex flex-col mb-2">
+				<div className="flex flex-col mb-2 gap-1">
 					<span>Correo electrónico</span>
 					<input
 						type="email"
@@ -34,7 +34,7 @@ export default function SignUpPage() {
 					/>
 				</div>
 
-				<div className="flex flex-col mb-2">
+				<div className="flex flex-col mb-2 gap-1">
 					<span>Contraseña</span>
 					<input
 						type="password"
@@ -43,7 +43,7 @@ export default function SignUpPage() {
 					/>
 				</div>
 
-				<button className="btn-primary">Registrarse</button>
+				<button className="btn-primary font-bold">Registrarse</button>
 			</form>
 
 			<div className="flex justify-center mt-4">

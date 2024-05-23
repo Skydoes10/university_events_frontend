@@ -7,7 +7,7 @@ export default function LoginPage() {
 			<Title title="Iniciar sesión" />
 
 			<form className="flex flex-col gap-4">
-				<div className="flex flex-col mb-2">
+				<div className="flex flex-col mb-2 gap-1">
 					<span>Correo electrónico</span>
 					<input
 						type="email"
@@ -16,7 +16,7 @@ export default function LoginPage() {
 					/>
 				</div>
 
-				<div className="flex flex-col mb-2">
+				<div className="flex flex-col mb-2 gap-1">
 					<span>Contraseña</span>
 					<input
 						type="password"
@@ -25,7 +25,7 @@ export default function LoginPage() {
 					/>
 				</div>
 
-				<button className="btn-primary">Ingresar</button>
+				<button className="btn-primary font-bold">Ingresar</button>
 			</form>
 
 			<div className="flex justify-center mt-4">

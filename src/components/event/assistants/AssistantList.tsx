@@ -7,7 +7,7 @@ interface Props {
 
 export const AssistantList = ({ assistants }: Props) => {
     return (
-        <div className="transition-all duration-300 bg-white p-4 rounded-lg shadow-md border-l-4 mb-2">
+        <div className="transition-all duration-300 bg-white p-4 rounded-lg shadow-md mb-2">
             {assistants.length > 0 ? (
                 assistants.map((assistant) => (
                     <AssistantItem key={assistant.username} assistant={assistant} />
