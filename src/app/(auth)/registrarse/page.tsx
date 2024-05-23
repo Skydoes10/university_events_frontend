@@ -37,12 +37,6 @@ export default function SignUpPage() {
 
 		await registerUser(user);
 
-		await new Promise<void>((resolve) => {
-			setTimeout(() => {
-				resolve();
-			}, 2000); // 2 seconds in milliseconds
-		});
-
 		router.push('/');
 	}
 

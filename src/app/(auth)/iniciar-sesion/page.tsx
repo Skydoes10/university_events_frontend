@@ -24,14 +24,8 @@ export default function LoginPage() {
 		console.log(isSubmitting);
 		console.log(data);
 
-		// const user = { email: data.email, password: data.password };
-		// await login(user);
-
-		await new Promise<void>((resolve) => {
-			setTimeout(() => {
-				resolve();
-			}, 2000); // 2 seconds in milliseconds
-		});
+		const user = { email: data.email, password: data.password };
+		await login(user);
 
 		router.push('/');
 	}
