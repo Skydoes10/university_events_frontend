@@ -1,20 +1,23 @@
-import type { Metadata } from "next";
-import { inter } from "@/config/fonts";
-import "./globals.css";
+import type { Metadata } from 'next';
+import { inter } from '@/config/fonts';
+import './globals.css';
+import ReduxProvider from './provider';
 
 export const metadata: Metadata = {
-  title: "Eventos",
-  description: "Gestión de eventos",
+	title: 'Eventos',
+	description: 'Gestión de eventos',
 };
 
 export default function RootLayout({
-  children,
+	children,
 }: Readonly<{
-  children: React.ReactNode;
+	children: React.ReactNode;
 }>) {
-  return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
-    </html>
-  );
+	return (
+		<html lang="en">
+			<body className={inter.className}>
+				<ReduxProvider>{children}</ReduxProvider>
+			</body>
+		</html>
+	);
 }

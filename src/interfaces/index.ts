@@ -5,3 +5,4 @@ export * from './event';
 export * from './eventLocation';
 export * from './organizer';
 export * from './speaker';
+export * from './user';

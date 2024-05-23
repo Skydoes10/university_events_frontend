@@ -1,4 +1,3 @@
-export interface Assistant {
-    fullName: string;
-    username: string;
-}
+import { User } from './user';
+
+export interface Assistant extends User {}

@@ -1,4 +1,3 @@
-export interface Speaker {
-    fullName: string;
-    username: string;
-}
+import { User } from './user';
+
+export interface Speaker extends User {}
