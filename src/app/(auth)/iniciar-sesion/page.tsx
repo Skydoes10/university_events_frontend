@@ -31,7 +31,7 @@ export default function LoginPage() {
 	}
 
 	return (
-		<>
+		<div className="fade-in">
 			<Title title="Iniciar sesión" />
 
 			<form
@@ -92,6 +92,6 @@ export default function LoginPage() {
 					</Link>
 				</p>
 			</div>
-		</>
+		</div>
 	);
 }
