@@ -1,4 +1,4 @@
-import { LoginUser, RegisterUser } from '@/schemas';
+import { LoginUser, RegisterEmployee, RegisterNotEmployee } from '@/schemas';
 import axios, { AxiosInstance } from 'axios';
 
 export class AuthService {
@@ -25,7 +25,7 @@ export class AuthService {
 		}
 	}
 
-	async register(user: RegisterUser) {
+	async registerNotEmployee(user: RegisterNotEmployee) {
 		try {
 			const res = await this.instance.post('/register', {
 				fullName: user.firstName + ' ' + user.lastName,
@@ -41,12 +41,24 @@ export class AuthService {
 		}
 	}
 
-	async getMe(userId: string) {
+	async registerEmployee(user: RegisterEmployee) {
 		try {
-			const res = await this.instance.get(`/users/${userId}`);
+			const res = await this.instance.post('/register', {
+				email: user.email,
+				password: user.password,
+			});
 			return res.data;
 		} catch (error) {
 			throw error;
 		}
 	}
+
+	// async getMe(userId: string) {
+	// 	try {
+	// 		const res = await this.instance.get(`/users/${userId}`);
+	// 		return res.data;
+	// 	} catch (error) {
+	// 		throw error;
+	// 	}
+	// }
 }

@@ -9,6 +9,9 @@ export * from './events/event-list/EventListItem';
 export * from './new-speaker/NewSpeakerForm';
 export * from './new-speaker/NewSpeakerEmployeeForm';
 
+export * from './register/register-employee/RegisterEmployee';
+export * from './register/register-not-employee/RegisterNotEmployee';
+
 export * from './ui/add-speaker/AddSpeaker';
 export * from './ui/footer/Footer';
 export * from './ui/navbar/Navbar';

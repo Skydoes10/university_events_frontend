@@ -1,45 +1,46 @@
 'use client';
-import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
-import { Title } from '@/components';
-import { loginSchema } from '@/schemas';
-import { useLogin } from '@/hooks';
+import { registerEmployeeSchema } from '@/schemas';
+import { useRegister } from '@/hooks';
 
-type FormData = z.infer<typeof loginSchema>;
-export default function LoginPage() {
-	const { login } = useLogin();
+type FormData = z.infer<typeof registerEmployeeSchema>;
+
+export const RegisterEmployee = () => {
+	const { registerEmployee } = useRegister();
 	const router = useRouter();
 	const {
 		handleSubmit,
 		register,
 		formState: { errors, isSubmitting, isDirty },
 	} = useForm<FormData>({
-		resolver: zodResolver(loginSchema),
+		resolver: zodResolver(registerEmployeeSchema),
 	});
 
 	async function onSubmit(data: FormData) {
 		console.log(isSubmitting);
 		console.log(data);
 
-		const user = { email: data.email, password: data.password };
-		await login(user);
+		const user = {
+			email: data.email,
+			password: data.password,
+		};
+
+		await registerEmployee(user);
 
 		router.push('/');
 	}
 
 	return (
-		<div className="fade-in">
-			<Title title="Iniciar sesión" />
-
-			<form
-				className="flex flex-col gap-4"
-				action=""
-				method="POST"
-				onSubmit={handleSubmit(onSubmit)}
-			>
+		<form
+			className="flex flex-col gap-4"
+			action=""
+			method="POST"
+			onSubmit={handleSubmit(onSubmit)}
+		>
+			<div className="flex flex-col fade-in gap-4">
 				<div className="flex flex-col mb-2 gap-1">
 					<span>Correo electrónico</span>
 					<input
@@ -57,7 +58,7 @@ export default function LoginPage() {
 				</div>
 
 				<div className="flex flex-col mb-2 gap-1">
-					<span>Contraseña</span>
+					<span>Crea una contraseña</span>
 					<input
 						{...register('password', { required: true })}
 						id="password"
@@ -71,27 +72,15 @@ export default function LoginPage() {
 						</span>
 					)}
 				</div>
-
-				<button
-					type="submit"
-					disabled={!isDirty || isSubmitting}
-					className="btn-primary font-bold cursor-pointer disabled:opacity-70"
-				>
-					Ingresar
-				</button>
-			</form>
-
-			<div className="flex justify-center mt-4">
-				<p>
-					¿Aún no tienes cuenta?{' '}
-					<Link
-						href="/registrarse"
-						className="text-blue-500 hover:underline"
-					>
-						Regístrate
-					</Link>
-				</p>
 			</div>
-		</div>
+
+			<button
+				type="submit"
+				disabled={!isDirty || isSubmitting}
+				className="btn-primary font-bold"
+			>
+				Registrarse
+			</button>
+		</form>
 	);
-}
+};

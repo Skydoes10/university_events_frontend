@@ -1,13 +1,16 @@
 import axios, { AxiosInstance } from 'axios';
+import { getAuthHeader } from './getAuthHeader';
 
 export class EventService {
 	protected readonly instance: AxiosInstance;
 
 	constructor(url: string) {
+		const { Authorization } = getAuthHeader();
 		this.instance = axios.create({
 			baseURL: url,
 			headers: {
 				'Content-Type': 'application/json',
+				Authorization,
 			},
 		});
 	}
