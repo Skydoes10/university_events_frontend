@@ -20,6 +20,8 @@ export default function NewEventPage() {
 	const organizingPrograms = useSelector(
 		(state: EventsState) => state.organizingPrograms
 	);
+	const speakers = useSelector((state: EventsState) => state.speakers);
+
 	const { createEvent } = useEvents();
 	const router = useRouter();
 	const {
@@ -249,7 +251,7 @@ export default function NewEventPage() {
 								Conferencistas
 								<AddSpeaker />
 							</span>
-							<SpeakerList speakers={[]} />
+							<SpeakerList speakers={speakers} />
 						</div>
 					</div>
 					<div className="flex flex-col mb-2 mt-4 mr-5 sm:mt-6">

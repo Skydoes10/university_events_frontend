@@ -50,6 +50,15 @@ export class EventService {
 		}
 	}
 
+	async fetchSpeaker(email: any) {
+		try {
+			const res = await this.instance.get(`/speakers/`, email);
+			return res.data;
+		} catch (error) {
+			throw error;
+		}
+	}
+
 	async getCities() {
 		try {
 			const res = await this.instance.get('/cities');

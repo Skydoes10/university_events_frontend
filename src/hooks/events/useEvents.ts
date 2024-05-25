@@ -1,6 +1,7 @@
 import { useDispatch } from 'react-redux';
 import {
 	addEvent,
+	addSpeaker,
 	deleteEvent,
 	getCities,
 	getEvent,
@@ -9,7 +10,7 @@ import {
 	getOrganizingPrograms,
 } from '@/features/events/eventsSlice';
 import { eventService } from '@/services';
-import { Event } from '@/interfaces';
+import { Event, Speaker } from '@/interfaces';
 
 export const useEvents = () => {
 	const dispatch = useDispatch();
@@ -19,7 +20,7 @@ export const useEvents = () => {
 			const res = await eventService.getEvents();
 			dispatch(getEvents(res));
 		} catch (error: any) {
-			dispatch(getEvents([]));
+			console.log(error);
 		}
 	};
 
@@ -28,7 +29,7 @@ export const useEvents = () => {
 			const res = await eventService.getEvent(id);
 			dispatch(getEvent(res));
 		} catch (error: any) {
-			dispatch(getEvent({} as Event));
+			console.log(error);
 		}
 	};
 
@@ -37,7 +38,7 @@ export const useEvents = () => {
 			const res = await eventService.addEvent(event);
 			dispatch(addEvent(res));
 		} catch (error: any) {
-			dispatch(addEvent({} as Event));
+			console.log(error);
 		}
 	};
 
@@ -46,8 +47,21 @@ export const useEvents = () => {
 			await eventService.deleteEvent(id);
 			dispatch(deleteEvent(id));
 		} catch (error: any) {
-			dispatch(deleteEvent(''));
+			console.log(error);
 		}
+	};
+
+	const fetchSpeaker = async (email: any) => {
+		try {
+			const res = await eventService.fetchSpeaker(email);
+			dispatch(addSpeaker(res));
+		} catch (error: any) {
+			console.log(error);
+		}
+	};
+
+	const setSpeaker = (speaker: Speaker) => {
+		dispatch(addSpeaker(speaker));
 	};
 
 	const fetchCities = async () => {
@@ -55,7 +69,7 @@ export const useEvents = () => {
 			const res = await eventService.getCities();
 			dispatch(getCities(res));
 		} catch (error: any) {
-			dispatch(getCities([]));
+			console.log(error);
 		}
 	};
 
@@ -64,7 +78,7 @@ export const useEvents = () => {
 			const res = await eventService.getOrganizingFaculties();
 			dispatch(getOrganizingFaculties(res));
 		} catch (error: any) {
-			dispatch(getOrganizingFaculties([]));
+			console.log(error);
 		}
 	};
 
@@ -73,13 +87,15 @@ export const useEvents = () => {
 			const res = await eventService.getOrganizingPrograms();
 			dispatch(getOrganizingPrograms(res));
 		} catch (error: any) {
-			dispatch(getOrganizingPrograms([]));
+			console.log(error);
 		}
 	};
 
 	return {
 		fetchEvents,
 		fetchEvent,
+		fetchSpeaker,
+		setSpeaker,
 		createEvent,
 		removeEvent,
 		fetchCities,

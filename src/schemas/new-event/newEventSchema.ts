@@ -14,7 +14,6 @@ export const newEventSchema = z.object({
 			message: 'La descripción no debe tener más de 300 caracteres',
 		}),
 	date: z.string(),
-	// city: z.string(),
 	city: z.string(),
 	address: z.string().min(3, {
 		message: 'La dirección debe tener al menos 3 caracteres',
