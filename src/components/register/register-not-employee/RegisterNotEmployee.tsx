@@ -31,6 +31,7 @@ export const RegisterNotEmployee = () => {
 			identification: data.identification,
 			city: data.city,
 			username: data.username,
+			relationshipType: data.relationshipType,
 		};
 
 		await registerNotEmployee(user);
@@ -121,6 +122,42 @@ export const RegisterNotEmployee = () => {
 					</div>
 				</div>
 
+				<div className="grid grid-cols-1 gap-2 sm:gap-5 sm:grid-cols-2">
+					<div className="flex flex-col mb-2 gap-1">
+						<span>Correo electrónico</span>
+						<input
+							{...register('email', { required: true })}
+							id="email"
+							name="email"
+							type="email"
+							className="p-2 border rounded-md bg-gray-200 focus:outline-none"
+						/>
+						{errors?.email && (
+							<span className="text-red-500 text-sm">
+								{errors?.email?.message}
+							</span>
+						)}
+					</div>
+
+					<div className="flex flex-col mb-2 gap-1">
+						<span>Relación con la universidad</span>
+						<input
+							{...register('relationshipType', {
+								required: true,
+							})}
+							id="relationshipType"
+							name="relationshipType"
+							type="text"
+							className="p-2 border rounded-md bg-gray-200 focus:outline-none"
+						/>
+						{errors?.relationshipType && (
+							<span className="text-red-500 text-sm">
+								{errors?.relationshipType?.message}
+							</span>
+						)}
+					</div>
+				</div>
+
 				<div className="flex flex-col mb-2 gap-1">
 					<span>Ciudad</span>
 					<select
@@ -134,22 +171,6 @@ export const RegisterNotEmployee = () => {
 							Cali, Valle del Cauca, Colombia
 						</option>
 					</select>
-				</div>
-
-				<div className="flex flex-col mb-2 gap-1">
-					<span>Correo electrónico</span>
-					<input
-						{...register('email', { required: true })}
-						id="email"
-						name="email"
-						type="email"
-						className="p-2 border rounded-md bg-gray-200 focus:outline-none"
-					/>
-					{errors?.email && (
-						<span className="text-red-500 text-sm">
-							{errors?.email?.message}
-						</span>
-					)}
 				</div>
 
 				<div className="flex flex-col mb-2 gap-1">

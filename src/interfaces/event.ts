@@ -2,17 +2,18 @@ import { Assistant } from './assistant';
 import { EventLocation } from './eventLocation';
 import { Organizer } from './organizer';
 import { Comment } from './comment';
+import { Speaker } from './speaker';
 
 export interface Event {
 	id?: string;
 	title: string;
 	description: string;
-	date: Date;
+	dateTime: Date | string;
 	categories: string[];
-	organizingFaculties: Organizer[];
-	organizingPrograms: Organizer[];
-	speakers: Assistant[];
+	organizing_faculties: Organizer[];
+	organizing_programs: Organizer[];
+	speakers: Speaker[];
 	assistants: Assistant[];
-	eventLocation: EventLocation[]
+	event_location: EventLocation[]
 	comments: Comment[];
 }

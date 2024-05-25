@@ -18,14 +18,14 @@ export default function EventPage({ params }: Props) {
 	const { id } = params;
 	const user = useSelector((state: UserState) => state.user);
 	const events = useSelector((state: EventsState) => state.events);
+	// const event = initialData.events.find((event) => event.id === id);
 	const event = events.find((event) => event.id === id);
-	const date = moment(event?.date).format('DD MMM YYYY HH:mm a');
+
+	const date = moment(event?.dateTime).format('DD MMM YYYY HH:mm a');
 
 	const isAssistant = event?.assistants.find(
 		(assistant) => assistant.id === user.id
 	);
-
-	// const event = initialData.events.find((event) => event.id === id);
 
 	if (!event) {
 		notFound();
@@ -49,42 +49,60 @@ export default function EventPage({ params }: Props) {
 
 			<div className="flex flex-wrap justify-between">
 				<div className="w-full md:w-7/12">
-					<div className="bg-white p-4 rounded-lg shadow-sm min-h-52">
+					{/* <div className="bg-white p-4 rounded-lg shadow-sm min-h-52"> */}
+					<div className="bg-white p-4 rounded-lg shadow-sm min-h-fit">
 						<span className="block">
 							<strong>Descripción:</strong>
 						</span>
 						<p className="mt-2">{event.description}</p>
 					</div>
 
-					<div className="bg-white p-4 rounded-lg shadow-sm mt-4 min-h-36">
+					{/* <div className="bg-white p-4 rounded-lg shadow-sm mt-4 min-h-36"> */}
+					<div className="bg-white p-4 rounded-lg shadow-sm mt-4 min-h-28">
 						<span className="block">
-							<strong>Organizadores:</strong>
-							{event.organizingFaculties.map((organizer) => (
-								<p key={organizer.id} className="mt-2">
+							<strong>Facultades organizadoras:</strong>
+							{/* <p className="mt-2">
+								Facultad de Ingeniería, Facultad de Ciencias
+							</p> */}
+							{/* {event.organizing_faculties.map((organizer) => (
 									{organizer.name}
-								</p>
-							))}
-							{event.organizingPrograms.map((organizer) => (
-								<p key={organizer.id} className="mt-2">
+								))} */}
+							<p className="mt-2">
+								{event.organizing_faculties.join(', ')}
+							</p>
+						</span>
+					</div>
+					<div className="bg-white p-4 rounded-lg shadow-sm mt-4 min-h-28">
+						<span className="block">
+							<strong>Programas organizadores:</strong>
+							{/* <p className="mt-2">
+								Programa de Ingeniería de Sistemas, Programa de
+								Ingeniería de Diseño de Medios Interactivos
+							</p> */}
+							{/* {event.organizing_programs.map((organizer) => (
 									{organizer.name}
-								</p>
-							))}
+								))} */}
+							<p className="mt-2">
+								{event.organizing_programs.join(', ')}
+							</p>
 						</span>
 					</div>
 				</div>
 
 				<div className="w-full md:w-2/5">
-					<div className="bg-white p-4 rounded-lg shadow-sm min-h-16">
+					{/* <div className="bg-white p-4 rounded-lg shadow-sm min-h-16"> */}
+					<div className="bg-white p-4 rounded-lg shadow-sm min-h-fit">
 						<span className="block">
 							<strong>Fecha y hora:</strong>
 							<p className="mt-2">{date}</p>
 						</span>
 					</div>
 
-					<div className="bg-white p-4 rounded-lg shadow-sm mt-4 min-h-32">
+					{/* <div className="bg-white p-4 rounded-lg shadow-sm mt-4 min-h-20"> */}
+					<div className="bg-white p-4 rounded-lg shadow-sm mt-4 min-h-fit">
 						<span className="block">
 							<strong>Lugar del evento:</strong>
-							{event.eventLocation.map((location) =>
+							{event.event_location.map((location) =>
 								location.address ? (
 									<p key={location.address} className="mt-2">
 										{location.address}, {location.name},{' '}
@@ -106,14 +124,23 @@ export default function EventPage({ params }: Props) {
 						</span>
 					</div>
 
-					<div className="bg-white p-4 rounded-lg shadow-sm mt-4 min-h-36">
+					{/* <div className="bg-white p-4 rounded-lg shadow-sm mt-4 min-h-36"> */}
+					<div className="bg-white p-4 rounded-lg shadow-sm mt-4 min-h-fit">
 						<span className="block">
 							<strong>Categorías:</strong>
-							{event.categories.map((category) => (
+							<p className="mt-2">
+								{event.categories.map((category) => (
+									<>
+										{category}
+										<br />
+									</>
+								))}
+							</p>
+							{/* {event.categories.map((category) => (
 								<p key={category} className="mt-2">
 									{category}
 								</p>
-							))}
+							))} */}
 						</span>
 					</div>
 				</div>

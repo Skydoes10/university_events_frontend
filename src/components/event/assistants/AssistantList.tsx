@@ -13,7 +13,7 @@ export const AssistantList = ({ assistants }: Props) => {
                     <AssistantItem key={assistant.username} assistant={assistant} />
                 ))
             ) : (
-                <p className="text-gray-700">No hay Asistentes aun</p>
+                <p className="text-gray-700">No hay asistentes aún</p>
             )}
         </div>
     );

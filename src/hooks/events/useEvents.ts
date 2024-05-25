@@ -1,60 +1,49 @@
 import { useDispatch } from 'react-redux';
 import {
 	addEvent,
-	addEventFailure,
-	addEventSuccess,
 	deleteEvent,
-	deleteEventFailure,
-	deleteEventSuccess,
 	getEvent,
-	getEventFailure,
 	getEvents,
-	getEventsFailure,
-	getEventsSuccess,
-	getEventSuccess,
 } from '@/features/events/eventsSlice';
 import { eventService } from '@/services';
+import { Event } from '@/interfaces';
 
 export const useEvents = () => {
 	const dispatch = useDispatch();
 
 	const fetchEvents = async () => {
-		dispatch(getEvents());
 		try {
 			const res = await eventService.getEvents();
-			dispatch(getEventsSuccess(res));
+			dispatch(getEvents(res));
 		} catch (error: any) {
-			dispatch(getEventsFailure(error.message));
+			dispatch(getEvents([]));
 		}
 	};
 
 	const fetchEvent = async (id: string) => {
-		dispatch(getEvent());
 		try {
 			const res = await eventService.getEvent(id);
-			dispatch(getEventSuccess(res));
+			dispatch(getEvent(res));
 		} catch (error: any) {
-			dispatch(getEventFailure(error.message));
+			dispatch(getEvent({} as Event));
 		}
 	};
 
 	const createEvent = async (event: Event) => {
-		dispatch(addEvent());
 		try {
 			const res = await eventService.addEvent(event);
-			dispatch(addEventSuccess(res));
+			dispatch(addEvent(res));
 		} catch (error: any) {
-			dispatch(addEventFailure(error.message));
+			dispatch(addEvent({} as Event));
 		}
 	};
 
 	const removeEvent = async (id: string) => {
-		dispatch(deleteEvent());
 		try {
 			await eventService.deleteEvent(id);
-			dispatch(deleteEventSuccess(id));
+			dispatch(deleteEvent(id));
 		} catch (error: any) {
-			dispatch(deleteEventFailure(error.message));
+			dispatch(deleteEvent(''));
 		}
 	};
 

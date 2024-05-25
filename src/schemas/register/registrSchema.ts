@@ -15,6 +15,9 @@ export const registerNotEmployeeSchema = z.object({
 		.email({ message: 'El correo electrónico no es válido' }),
 	password: z.string().min(1, { message: 'La contraseña es requerida' }),
 	city: z.string().min(1, { message: 'La ciudad es requerida' }),
+	relationshipType: z
+		.string()
+		.min(1, { message: 'La relación con la universidad es requerida' }),
 });
 
 export const registerEmployeeSchema = z.object({

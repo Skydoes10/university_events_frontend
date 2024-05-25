@@ -44,19 +44,6 @@ export default function NewEventPage() {
 							</div>
 
 							<div className="flex flex-col mb-2 gap-1">
-								<span>Ciudad</span>
-								<select
-									className="p-2 border rounded-md bg-white focus:outline-none"
-									required
-								>
-									<option value="">Seleccionar</option>
-									<option value="cali">
-										Cali, Valle del Cauca, Colombia
-									</option>
-								</select>
-							</div>
-
-							<div className="flex flex-col mb-2 gap-1">
 								<span>
 									Categorías
 									<span className="text-gray-500">
@@ -72,11 +59,48 @@ export default function NewEventPage() {
 									min={3}
 								/>
 							</div>
+
+							<div className="flex flex-col mb-2 gap-1">
+								<span>Ciudad</span>
+								<select
+									className="p-2 border rounded-md bg-white focus:outline-none"
+									required
+								>
+									<option value="">Seleccionar</option>
+									<option value="cali">
+										Cali, Valle del Cauca, Colombia
+									</option>
+								</select>
+							</div>
 						</div>
+
+						<div className="flex flex-col mb-2 gap-1">
+							<span>Dirección</span>
+							<input
+								type="text"
+								className="p-2 border rounded-md bg-white focus:outline-none"
+								required
+								max={100}
+								min={3}
+							/>
+						</div>
+
+						<div className="flex flex-col mb-2 gap-1">
+							<span>Nombre del lugar</span>
+							<input
+								type="text"
+								className="p-2 border rounded-md bg-white focus:outline-none"
+								required
+								max={100}
+								min={3}
+							/>
+						</div>
+
 						<div className="flex flex-col mb-2 gap-1">
 							<span>Facultades organizadoras</span>
 							<Selector required={true} />
 						</div>
+
 						<div className="flex flex-col mb-2 gap-1">
 							<span>
 								Programas organizadores

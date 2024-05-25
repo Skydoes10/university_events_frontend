@@ -4,6 +4,7 @@ import { User } from '@/interfaces';
 
 export interface UserState {
 	user: User;
+	isAuthenticated?: boolean;
 }
 
 const initialState: UserState = {
@@ -17,6 +18,7 @@ const initialState: UserState = {
 		relationship_type: '',
 		isAdmin: false,
 	},
+	isAuthenticated: false,
 };
 
 export const userSlice = createSlice({
@@ -25,9 +27,11 @@ export const userSlice = createSlice({
 	reducers: {
 		setUser: (state, action: PayloadAction<User>) => {
 			state.user = action.payload;
+			state.isAuthenticated = true;
 		},
 		clearUser: (state) => {
 			state.user = initialState.user;
+			state.isAuthenticated = false;
 		},
 	},
 });

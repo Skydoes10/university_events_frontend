@@ -15,24 +15,24 @@ export const EventListItem = ({ event }: Props) => {
 	const router = useRouter();
 	const user = useSelector((state: UserState) => state.user);
 
-	const date = moment(event.date).format('DD MMM YYYY HH:mm a');
+	const date = moment(event.dateTime).format('DD MMM YYYY HH:mm a');
 
-	let location = event.eventLocation[0].name;
+	let location = event.event_location[0].name;
 
-	if (event.eventLocation[0].address) {
-		location += ', ' + event.eventLocation[0].address;
+	if (event.event_location[0].address) {
+		location += ', ' + event.event_location[0].address;
 	}
 
-	if (event.eventLocation[0].platform) {
-		location += ', ' + event.eventLocation[0].platform;
+	if (event.event_location[0].platform) {
+		location += ', ' + event.event_location[0].platform;
 	}
 
 	const city =
-		event.eventLocation[0].city.name +
+		event.event_location[0].city.name +
 		', ' +
-		event.eventLocation[0].city.department +
+		event.event_location[0].city.department +
 		', ' +
-		event.eventLocation[0].city.country;
+		event.event_location[0].city.country;
 
 	const handleClick = () => {
 		router.push(`/evento/${event.id}`);

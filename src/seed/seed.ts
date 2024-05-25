@@ -7,117 +7,68 @@ interface SeedData {
 export const initialData: SeedData = {
 	events: [
 		{
-			id: '1',
 			title: 'Tech Conference 2024',
 			description: 'La conferencia de tecnología más grande del año',
 			categories: ['Tecnoligia', 'innovación'],
-			date: new Date('2024-01-01'),
-			organizingFaculties: [],
-			organizingPrograms: [],
+			dateTime: '2024-05-24T15:30',
+			organizing_faculties: [
+				{
+					id: '1',
+					name: 'Facultad de Ingeniería',
+				},
+			],
+			organizing_programs: [
+				{
+					id: '1',
+					name: 'Ingeniería de Sistemas',
+				},
+				{
+					id: '2',
+					name: 'Ingeniería de Diseño de Medios Interactivos',
+				},
+			],
 			speakers: [
 				{
-					fullName: 'Test Speaker Fullname 1',
-					username: 'TestSpeakerUsername1',
-				}, 
-				{
-					fullName: 'Test Speaker Fullname 2',
-					username: 'TestSpeakerUsername2',
-				}, 
-				{
-					fullName: 'Test Speaker Fullname 3',
-					username: 'TestSpeakerUsername3',
-				}
+					identifier: '83728947',
+					fullName: 'John Doe',
+					email: 'john@gmail.com',
+					city: {
+						name: 'Cali',
+						department: 'Valle del Cauca',
+						country: 'Colombia',
+					},
+					relationship_type: 'Posersor',
+				},
 			],
 			assistants: [],
-			eventLocation: {
-				name: 'Auditorio Argos',
-				address: 'Universidad Icesi',
-				city: {
-					name: 'Cali',
-					department: 'Valle del Cauca',
-					country: 'Colombia',
+			event_location: [
+				{
+					name: 'Auditorio Argos',
+					address: 'Universidad Icesi',
+					city: {
+						name: 'Cali',
+						department: 'Valle del Cauca',
+						country: 'Colombia',
+					},
 				},
-			},
+			],
 			comments: [
 				{
+					text: 'Excelente evento',
 					user: {
-						fullName: 'Juan Perez',
-						username: 'juanperez',
+						identifier: '8323428947',
+						username: 'mariadoe',
+						fullName: 'Maria Doe',
+						email: 'maria@gmail.com0',
+						city: {
+							name: 'Cali',
+							department: 'Valle del Cauca',
+							country: 'Colombia',
+						},
+						relationship_type: 'Profesor',
 					},
-					text: 'Excelente evento, muy buena organización',
-				},
-				{
-					user: {
-						fullName: 'Maria Rodriguez',
-						username: 'mariarodriguez',
-					},
-					text: 'Me encantó, espero el próximo año',
 				},
 			],
-		},
-		{
-			id: '2',
-			title: 'Tech Conference 2023',
-			description: 'La conferencia de tecnología más grande del año',
-			categories: ['Tecnoligia', 'innovación'],
-			date: new Date('2023-01-01'),
-			organizingFaculties: [],
-			organizingPrograms: [],
-			speakers: [],
-			assistants: [],
-			eventLocation: {
-				name: 'Auditorio Argos',
-				address: 'Universidad Icesi',
-				city: {
-					name: 'Cali',
-					department: 'Valle del Cauca',
-					country: 'Colombia',
-				},
-			},
-			comments: [],
-		},
-		{
-			id: '3',
-			title: 'Tech Conference 2022',
-			description: 'La conferencia de tecnología más grande del año',
-			categories: ['Tecnoligia', 'innovación'],
-			date: new Date('2022-01-01'),
-			organizingFaculties: [],
-			organizingPrograms: [],
-			speakers: [],
-			assistants: [],
-			eventLocation: {
-				name: 'Auditorio Argos',
-				address: 'Universidad Icesi',
-				city: {
-					name: 'Cali',
-					department: 'Valle del Cauca',
-					country: 'Colombia',
-				},
-			},
-			comments: [],
-		},
-		{
-			id: '4',
-			title: 'Tech Conference 2021',
-			description: 'La conferencia de tecnología más grande del año',
-			categories: ['Tecnoligia', 'innovación'],
-			date: new Date('2021-01-01'),
-			organizingFaculties: [],
-			organizingPrograms: [],
-			speakers: [],
-			assistants: [],
-			eventLocation: {
-				name: 'Virtual',
-				city: {
-					name: 'Cali',
-					department: 'Valle del Cauca',
-					country: 'Colombia',
-				},
-				link: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
-				platform: 'Youtube',
-			},
-			comments: [],
 		},
 	],
 };
