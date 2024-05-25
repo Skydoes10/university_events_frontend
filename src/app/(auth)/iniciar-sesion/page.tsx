@@ -9,6 +9,7 @@ import { loginSchema } from '@/schemas';
 import { useLogin } from '@/hooks';
 
 type FormData = z.infer<typeof loginSchema>;
+
 export default function LoginPage() {
 	const { login } = useLogin();
 	const router = useRouter();

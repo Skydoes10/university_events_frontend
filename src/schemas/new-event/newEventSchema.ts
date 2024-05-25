@@ -14,23 +14,42 @@ export const newEventSchema = z.object({
 			message: 'La descripción no debe tener más de 300 caracteres',
 		}),
 	date: z.string(),
+	// city: z.string(),
 	city: z.string(),
-	categories: z.string(),
-	organizingFaculties: z.array(z.string()),
-	organizingPrograms: z.array(z.string()),
-	// speakers: z.array(z.object({} as Speaker)),
+	address: z.string().min(3, {
+		message: 'La dirección debe tener al menos 3 caracteres',
+	}),
+	placeName: z.string().min(3, {
+		message: 'El nombre del lugar debe tener al menos 3 caracteres',
+	}),
+	categories: z.string().min(4, {
+		message: 'Las categorías deben tener al menos 4 caracteres',
+	}),
+	organizingFaculties: z
+		.array(
+			z.object({
+				id: z.string(),
+				name: z.string(),
+			})
+		)
+		.min(1, { message: 'Debe haber al menos una facultad organizadora' }),
+	organizingPrograms: z.array(
+		z.object({
+			id: z.string(),
+			name: z.string(),
+		})
+	),
 	speakers: z
 		.array(
 			z.object({
 				identifier: z.string(),
-				username: z.string(),
-				full_name: z.string(),
+				fullName: z.string(),
 				email: z.string(),
 				city: z.string(),
 				relationship_type: z.string(),
 			})
 		)
-		.nonempty(),
+		.min(1, { message: 'Debe haber al menos un conferencista' }),
 });
 
 export type NewEvent = z.infer<typeof newEventSchema>;

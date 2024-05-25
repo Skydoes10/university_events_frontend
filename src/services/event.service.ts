@@ -49,4 +49,31 @@ export class EventService {
 			throw error;
 		}
 	}
+
+	async getCities() {
+		try {
+			const res = await this.instance.get('/cities');
+			return res.data;
+		} catch (error) {
+			throw error;
+		}
+	}
+
+	async getOrganizingFaculties() {
+		try {
+			const res = await this.instance.get('/organizing-faculties');
+			return res.data;
+		} catch (error) {
+			throw error;
+		}
+	}
+
+	async getOrganizingPrograms() {
+		try {
+			const res = await this.instance.get('/organizing-programs');
+			return res.data;
+		} catch (error) {
+			throw error;
+		}
+	}
 }

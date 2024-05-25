@@ -2,8 +2,11 @@ import { useDispatch } from 'react-redux';
 import {
 	addEvent,
 	deleteEvent,
+	getCities,
 	getEvent,
 	getEvents,
+	getOrganizingFaculties,
+	getOrganizingPrograms,
 } from '@/features/events/eventsSlice';
 import { eventService } from '@/services';
 import { Event } from '@/interfaces';
@@ -47,10 +50,40 @@ export const useEvents = () => {
 		}
 	};
 
+	const fetchCities = async () => {
+		try {
+			const res = await eventService.getCities();
+			dispatch(getCities(res));
+		} catch (error: any) {
+			dispatch(getCities([]));
+		}
+	};
+
+	const fetchOrganizingFaculties = async () => {
+		try {
+			const res = await eventService.getOrganizingFaculties();
+			dispatch(getOrganizingFaculties(res));
+		} catch (error: any) {
+			dispatch(getOrganizingFaculties([]));
+		}
+	};
+
+	const fetchOrganizingPrograms = async () => {
+		try {
+			const res = await eventService.getOrganizingPrograms();
+			dispatch(getOrganizingPrograms(res));
+		} catch (error: any) {
+			dispatch(getOrganizingPrograms([]));
+		}
+	};
+
 	return {
 		fetchEvents,
 		fetchEvent,
 		createEvent,
 		removeEvent,
+		fetchCities,
+		fetchOrganizingFaculties,
+		fetchOrganizingPrograms,
 	};
 };

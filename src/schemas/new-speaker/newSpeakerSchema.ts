@@ -9,4 +9,4 @@ export const newSpeakerSchema = z.object({
 	relationship_type: z.string(),
 });
 
-export type NewEvent = z.infer<typeof newSpeakerSchema>;
+export type NewSpeaker = z.infer<typeof newSpeakerSchema>;

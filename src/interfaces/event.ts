@@ -15,5 +15,5 @@ export interface Event {
 	speakers: Speaker[];
 	assistants: Assistant[];
 	event_location: EventLocation[]
-	comments: Comment[];
+	comments?: Comment[];
 }

@@ -1,8 +1,11 @@
 'use client';
 import React, { useState, useEffect, useRef } from 'react';
+import { Organizer } from '@/interfaces';
 
 interface Props {
 	required: boolean;
+	optionsToSelect: Organizer[];
+	handleSelected: (selected: Organizer[]) => void;
 }
 
 interface Option {
@@ -11,7 +14,11 @@ interface Option {
 	selected: boolean;
 }
 
-export const Selector = ({ required }: Props) => {
+export const Selector = ({
+	required,
+	optionsToSelect,
+	handleSelected,
+}: Props) => {
 	const [options, setOptions] = useState<Option[]>([]);
 	const [selected, setSelected] = useState<number[]>([]);
 	const [show, setShow] = useState(false);
@@ -60,6 +67,10 @@ export const Selector = ({ required }: Props) => {
 
 	const selectedValues = () => selected.map((index) => options[index].value);
 
+	useEffect(() => {
+		handleSelected(selected.map((index) => optionsToSelect[index]));
+	}, [handleSelected, optionsToSelect, selected]);
+
 	return (
 		// <div className="w-full md:w-1/2 flex flex-col items-center h-64 mx-auto">
 		<div className="">
@@ -68,10 +79,11 @@ export const Selector = ({ required }: Props) => {
 				style={{ display: 'none' }}
 				required={required}
 			>
-				<option value="1">Option 2</option>
-				<option value="2">Option 3</option>
-				<option value="3">Option 4</option>
-				<option value="4">Option 5</option>
+				{optionsToSelect?.map((option) => (
+					<option key={option.id} value={option.id}>
+						{option.name}
+					</option>
+				))}
 			</select>
 			<div>
 				<input

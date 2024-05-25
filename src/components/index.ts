@@ -3,6 +3,8 @@ export * from './event/comments/Comment';
 export * from './event/comments/CommentList';
 export * from './event/tabs/Tabs';
 
+export * from './event/speakers/SpeakerList';
+
 export * from './events/event-list/EventList';
 export * from './events/event-list/EventListItem';
 

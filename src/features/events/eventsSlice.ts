@@ -1,14 +1,20 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { Event } from '@/interfaces';
+import { City, Event, Organizer } from '@/interfaces';
 
 export interface EventsState {
 	events: Event[];
 	event: Event | null;
+	cities: City[];
+	organizingFaculties: Organizer[];
+	organizingPrograms: Organizer[];
 }
 
 const initialState: EventsState = {
 	events: [],
 	event: null,
+	cities: [],
+	organizingFaculties: [],
+	organizingPrograms: [],
 };
 
 export const eventsSlice = createSlice({
@@ -29,6 +35,15 @@ export const eventsSlice = createSlice({
 				(event) => event.id !== action.payload
 			);
 		},
+		getCities: (state, action: PayloadAction<City[]>) => {
+			state.cities = action.payload;
+		},
+		getOrganizingFaculties: (state, action: PayloadAction<Organizer[]>) => {
+			state.organizingFaculties = action.payload;
+		},
+		getOrganizingPrograms: (state, action: PayloadAction<Organizer[]>) => {
+			state.organizingPrograms = action.payload;
+		},
 		// updateEvent: (state) => {
 		// 	state.loading = true;
 		// },
@@ -47,6 +62,9 @@ export const eventsSlice = createSlice({
 });
 
 export const {
+	getCities,
+	getOrganizingFaculties,
+	getOrganizingPrograms,
 	getEvents,
 	getEvent,
 	addEvent,
