@@ -69,7 +69,7 @@ export const Selector = ({
 
 	useEffect(() => {
 		handleSelected(selected.map((index) => optionsToSelect[index]));
-	}, [handleSelected, optionsToSelect, selected]);
+	}, [selected]);
 
 	return (
 		// <div className="w-full md:w-1/2 flex flex-col items-center h-64 mx-auto">

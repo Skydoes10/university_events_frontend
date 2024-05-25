@@ -21,15 +21,14 @@ export default function EventPage({ params }: Props) {
 	// const event = initialData.events.find((event) => event.id === id);
 	const event = events.find((event) => event.id === id);
 
+	if (!event) {
+		notFound();
+	}
 	const date = moment(event?.dateTime).format('DD MMM YYYY HH:mm a');
 
 	const isAssistant = event?.assistants.find(
 		(assistant) => assistant.id === user.id
 	);
-
-	if (!event) {
-		notFound();
-	}
 
 	return (
 		<div className="container mx-auto p-4 fade-in">
@@ -147,7 +146,7 @@ export default function EventPage({ params }: Props) {
 
 				<div className="w-full mt-4">
 					<Tabs
-						comments={event.comments}
+						comments={event.comments!}
 						assistants={event.assistants}
 						speakers={event.speakers}
 					/>
