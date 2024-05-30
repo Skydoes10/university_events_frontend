@@ -26,7 +26,9 @@ export default function EventPage({ params }: Props) {
   useEffect(() => {
     const fetchEvent = async () => {
       try {
+        console.log(`Fetching event with ID: ${id}`);
         const response = await axiosInstance.get(`/events/${id}`);
+        console.log('Event data:', response.data);
         setEvent(response.data);
       } catch (error) {
         console.error('Error fetching event:', error);
