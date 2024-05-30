@@ -6,3 +6,4 @@ export const titleFonts = Inter({
 	subsets: ['latin'],
 	weight: ['500', '700'],
 });
+

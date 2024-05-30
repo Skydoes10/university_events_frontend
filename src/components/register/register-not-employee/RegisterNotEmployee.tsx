@@ -4,12 +4,15 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import { registerNotEmployeeSchema } from '@/schemas';
-import { useRegister } from '@/hooks';
+import axiosInstance from '@/utils/axiosInstance';
 
 type FormData = z.infer<typeof registerNotEmployeeSchema>;
 
-export const RegisterNotEmployee = () => {
-	const { registerNotEmployee } = useRegister();
+interface RegisterNotEmployeeProps {
+	onRegister: (data: FormData) => Promise<void>;
+}
+
+export const RegisterNotEmployee = ({ onRegister }: RegisterNotEmployeeProps) => {
 	const router = useRouter();
 	const {
 		handleSubmit,
@@ -20,39 +23,23 @@ export const RegisterNotEmployee = () => {
 	});
 
 	async function onSubmit(data: FormData) {
-		console.log(isSubmitting);
-		console.log(data);
-
-		const user = {
-			firstName: data.firstName,
-			lastName: data.lastName,
-			email: data.email,
-			password: data.password,
-			identification: data.identification,
-			city: data.city,
-			username: data.username,
-			relationshipType: data.relationshipType,
-		};
-
-		await registerNotEmployee(user);
-
-		router.push('/');
+		try {
+			await onRegister(data);
+			router.push('/');
+		} catch (error) {
+			console.error('Error registering user:', error);
+			// Manejar errores, mostrar mensaje de error, etc.
+		}
 	}
+
 	return (
-		<form
-			className="flex flex-col gap-4"
-			action=""
-			method="POST"
-			onSubmit={handleSubmit(onSubmit)}
-		>
+		<form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
 			<div className="flex flex-col fade-in gap-4">
 				<div className="grid grid-cols-1 gap-2 sm:gap-5 sm:grid-cols-2">
 					<div className="flex flex-col mb-2 gap-1">
 						<span>Nombre</span>
 						<input
-							{...register('firstName', {
-								required: true,
-							})}
+							{...register('firstName', { required: true })}
 							id="firstName"
 							name="firstName"
 							type="text"
@@ -68,9 +55,7 @@ export const RegisterNotEmployee = () => {
 					<div className="flex flex-col mb-2 gap-1">
 						<span>Apellido</span>
 						<input
-							{...register('lastName', {
-								required: true,
-							})}
+							{...register('lastName', { required: true })}
 							id="lastName"
 							name="lastName"
 							type="text"
@@ -88,9 +73,7 @@ export const RegisterNotEmployee = () => {
 					<div className="flex flex-col mb-2 gap-1">
 						<span>Nombre de usuario</span>
 						<input
-							{...register('username', {
-								required: true,
-							})}
+							{...register('username', { required: true })}
 							id="username"
 							name="username"
 							type="text"
@@ -106,9 +89,7 @@ export const RegisterNotEmployee = () => {
 					<div className="flex flex-col mb-2 gap-1">
 						<span>Número de identificación</span>
 						<input
-							{...register('identification', {
-								required: true,
-							})}
+							{...register('identification', { required: true })}
 							id="identification"
 							name="identification"
 							type="text"
@@ -142,9 +123,7 @@ export const RegisterNotEmployee = () => {
 					<div className="flex flex-col mb-2 gap-1">
 						<span>Relación con la universidad</span>
 						<input
-							{...register('relationshipType', {
-								required: true,
-							})}
+							{...register('relationshipType', { required: true })}
 							id="relationshipType"
 							name="relationshipType"
 							type="text"
@@ -167,10 +146,13 @@ export const RegisterNotEmployee = () => {
 						className="p-2 border rounded-md bg-gray-200 focus:outline-none"
 					>
 						<option value="">Seleccionar</option>
-						<option value="cali">
-							Cali, Valle del Cauca, Colombia
-						</option>
+						<option value="cali">Cali, Valle del Cauca, Colombia</option>
 					</select>
+					{errors?.city && (
+						<span className="text-red-500 text-sm">
+							{errors?.city?.message}
+						</span>
+					)}
 				</div>
 
 				<div className="flex flex-col mb-2 gap-1">
@@ -198,5 +180,6 @@ export const RegisterNotEmployee = () => {
 				Registrarse
 			</button>
 		</form>
+
 	);
 };

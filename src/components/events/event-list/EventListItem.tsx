@@ -17,22 +17,22 @@ export const EventListItem = ({ event }: Props) => {
 
 	const date = moment(event.dateTime).format('DD MMM YYYY HH:mm a');
 
-	let location = event.event_location[0].name;
+	let location = '';
+    if (event.event_location && event.event_location[0]) {
+        location = event.event_location[0].name || '';
 
-	if (event.event_location[0].address) {
-		location += ', ' + event.event_location[0].address;
-	}
+        if (event.event_location[0].address) {
+            location += ', ' + event.event_location[0].address;
+        }
 
-	if (event.event_location[0].platform) {
-		location += ', ' + event.event_location[0].platform;
-	}
+        if (event.event_location[0].platform) {
+            location += ', ' + event.event_location[0].platform;
+        }
+    }
 
-	const city =
-		event.event_location[0].city.name +
-		', ' +
-		event.event_location[0].city.department +
-		', ' +
-		event.event_location[0].city.country;
+    const city = event.event_location && event.event_location[0]
+        ? `${event.event_location[0].city.name}, ${event.event_location[0].city.department}, ${event.event_location[0].city.country}`
+        : '';
 
 	const handleClick = () => {
 		router.push(`/evento/${event.id}`);

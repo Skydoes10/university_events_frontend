@@ -4,12 +4,15 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import { registerEmployeeSchema } from '@/schemas';
-import { useRegister } from '@/hooks';
+import axiosInstance from '@/utils/axiosInstance';
 
 type FormData = z.infer<typeof registerEmployeeSchema>;
 
-export const RegisterEmployee = () => {
-	const { registerEmployee } = useRegister();
+interface RegisterEmployeeProps {
+	onRegister: (data: FormData) => Promise<void>;
+}
+
+export const RegisterEmployee = ({ onRegister }: RegisterEmployeeProps) => {
 	const router = useRouter();
 	const {
 		handleSubmit,
@@ -20,26 +23,17 @@ export const RegisterEmployee = () => {
 	});
 
 	async function onSubmit(data: FormData) {
-		console.log(isSubmitting);
-		console.log(data);
-
-		const user = {
-			email: data.email,
-			password: data.password,
-		};
-
-		await registerEmployee(user);
-
-		router.push('/');
+		try {
+			await onRegister(data);
+			router.push('/');
+		} catch (error) {
+			console.error('Error registering user:', error);
+			// Manejar errores, mostrar mensaje de error, etc.
+		}
 	}
 
 	return (
-		<form
-			className="flex flex-col gap-4"
-			action=""
-			method="POST"
-			onSubmit={handleSubmit(onSubmit)}
-		>
+		<form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
 			<div className="flex flex-col fade-in gap-4">
 				<div className="flex flex-col mb-2 gap-1">
 					<span>Correo electrónico</span>

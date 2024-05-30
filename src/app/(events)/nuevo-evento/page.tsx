@@ -10,6 +10,7 @@ import { useState } from 'react';
 import { Organizer } from '@/interfaces';
 import { useSelector } from 'react-redux';
 import { EventsState } from '@/features/events/eventsSlice';
+import axiosInstance from '../../../utils/axiosInstance';
 
 type FormData = z.infer<typeof newEventSchema>;
 
@@ -42,45 +43,48 @@ export default function NewEventPage() {
 		setPrograms(programs);
 	};
 
-	async function onSubmit(data: FormData) {
-		console.log(isSubmitting);
-		console.log(data);
+	const handleRegister = async (data: FormData) => {
+		try {
+			const city = data.city.split(', ');
 
-		const city = data.city.split(', ');
-
-		const event = {
-			title: data.title,
-			description: data.description,
-			dateTime: data.date,
-			event_location: [
-				{
-					city: {
-						name: city[0],
-						department: city[1],
-						country: city[2],
+			const event = {
+				title: data.title,
+				description: data.description,
+				dateTime: data.date,
+				event_location: [
+					{
+						city: {
+							name: city[0],
+							department: city[1],
+							country: city[2],
+						},
+						address: data.address,
+						name: data.placeName,
 					},
-					address: data.address,
-					name: data.placeName,
-				},
-			],
-			categories: data.categories.split(', '),
-			organizing_faculties: data.organizingFaculties,
-			organizing_programs: data.organizingPrograms,
-			speakers: data.speakers,
-			assistants: [],
-		};
+				],
+				categories: data.categories.split(', '),
+				organizing_faculties: faculties,
+				organizing_programs: programs,
+				speakers: speakers,
+				assistants: [],
+			};
 
-		await createEvent(event);
+			const response = await axiosInstance.post('/events', event);
+			console.log('Event created:', response.data);
 
-		router.push('/');
-	}
+			// Redirigir a la página principal u otra página después de la creación
+			router.push('/');
+		} catch (error: any) {
+			console.error('Error creating event:', error.response?.data || error.message);
+		}
+	};
 
 	return (
 		<div className="flex flex-col sm:justify-center sm:items-center mb-72 px-10 sm:px-0 fade-in">
 			<div className="w-full  xl:w-[1000px] flex flex-col justify-center text-left">
 				<Title title="Nuevo evento" />
 
-				<form action="" method="POST" onSubmit={handleSubmit(onSubmit)}>
+				<form action="" method="POST" onSubmit={handleSubmit(handleRegister)}>
 					<div className="grid grid-cols-1 gap-2 sm:gap-5 sm:grid-cols-2">
 						<div className="flex flex-col gap-2 sm:gap-5 sm:grid-cols-2">
 							<div className="flex flex-col mb-2 gap-1">

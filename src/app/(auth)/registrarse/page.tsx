@@ -2,16 +2,28 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import { RegisterEmployee, RegisterNotEmployee, Title } from '@/components';
+import axiosInstance from '../../../utils/axiosInstance';
 
 export default function SignUpPage() {
-	const [isEmployee, setisEmployee] = useState<boolean>(true);
+	const [isEmployee, setIsEmployee] = useState<boolean>(true);
 
 	const handleIsEmployee = () => {
-		setisEmployee(true);
+		setIsEmployee(true);
 	};
 
 	const handleIsNotEmployee = () => {
-		setisEmployee(false);
+		setIsEmployee(false);
+	};
+
+	const handleRegister = async (data: any) => {
+		try {
+			const response = await axiosInstance.post('http://localhost:3000/register', data);
+			console.log('User registered:', response.data);
+			// Redirigir o mostrar un mensaje de éxito según sea necesario
+		} catch (error) {
+			console.error('Error registering user:', error);
+			// Manejar errores, mostrar mensaje de error, etc.
+		}
 	};
 
 	return (
@@ -45,7 +57,7 @@ export default function SignUpPage() {
 					</div>
 				</div>
 
-				{isEmployee ? <RegisterEmployee /> : <RegisterNotEmployee />}
+				{isEmployee ? <RegisterEmployee onRegister={handleRegister} /> : <RegisterNotEmployee onRegister={handleRegister} />}
 			</div>
 
 			<div className="flex justify-center mt-4">

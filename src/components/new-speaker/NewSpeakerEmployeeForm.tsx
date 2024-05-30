@@ -1,3 +1,4 @@
+'use client';
 import * as z from 'zod';
 import { newSpeakerEmployeeSchema } from '@/schemas';
 import { useForm } from 'react-hook-form';

@@ -7,6 +7,7 @@ import * as z from 'zod';
 import { Title } from '@/components';
 import { loginSchema } from '@/schemas';
 import { useLogin } from '@/hooks';
+import axiosInstance from '../../../utils/axiosInstance';
 
 type FormData = z.infer<typeof loginSchema>;
 
@@ -22,13 +23,15 @@ export default function LoginPage() {
 	});
 
 	async function onSubmit(data: FormData) {
-		console.log(isSubmitting);
-		console.log(data);
+		try {
+			const response = await axiosInstance.post('http://localhost:3000/login', data);
+			const token = response.data.token;
+			localStorage.setItem('token', token);
 
-		const user = { email: data.email, password: data.password };
-		await login(user);
-
-		router.push('/');
+			router.push('/');
+		} catch (error) {
+			console.error('Error logging in:', error);
+		}
 	}
 
 	return (
