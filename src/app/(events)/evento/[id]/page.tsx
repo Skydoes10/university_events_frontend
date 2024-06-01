@@ -79,7 +79,7 @@ export default function EventPage({ params }: Props) {
               <strong>Facultades organizadoras:</strong>
             </span>
             <p className="mt-2">
-              {event.organizing_faculties.join(', ')}
+              {event.organizing_faculties.map(faculty => faculty.name).join(', ')}
             </p>
           </div>
 
@@ -88,7 +88,7 @@ export default function EventPage({ params }: Props) {
               <strong>Programas organizadores:</strong>
             </span>
             <p className="mt-2">
-              {event.organizing_programs.join(', ')}
+              {event.organizing_programs.map(program => program.name).join(', ')}
             </p>
           </div>
         </div>
