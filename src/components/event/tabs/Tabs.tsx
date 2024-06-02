@@ -5,10 +5,11 @@ import { Assistant, Comment } from '@/interfaces';
 import { Speaker } from '@/interfaces/speaker';
 import { SpeakerList } from '../speakers/SpeakerList';
 import { AssistantList } from '../assistants/AssistantList';
+import { AxiosInstance } from 'axios';
 
 interface Props {
 	comments: Comment[];
-	assistants: Assistant[];
+	assistants: string[];
 	speakers: Speaker[];
 }
 
