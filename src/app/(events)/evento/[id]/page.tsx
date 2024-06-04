@@ -7,7 +7,7 @@ import axiosInstance from '@/utils/axiosInstance';
 import { useEffect, useState } from 'react';
 
 import { Tabs, Title } from '@/components';
-import { User, Event } from '@/interfaces';
+import { User, Event, Comment } from '@/interfaces';
 import { UserState } from '@/features/user/userSlice';
 import { EventsState } from '@/features/events/eventsSlice';
 
@@ -22,6 +22,7 @@ export default function EventPage({ params }: Props) {
   const user = useSelector((state: UserState) => state.user) as User;
   const events = useSelector((state: EventsState) => state.events);
   const [event, setEvent] = useState<Event | null>(null);
+  const [comment, setComment] = useState<Comment[]>([])
 
   useEffect(() => {
     const fetchEvent = async () => {
@@ -29,7 +30,9 @@ export default function EventPage({ params }: Props) {
         console.log(`Fetching event with ID: ${id}`);
         const response = await axiosInstance.get(`/events/${id}`);
         console.log('Event data:', response.data);
+        const com = await axiosInstance.get(`/events/comments/${id}`);
         setEvent(response.data);
+        setComment(com.data);
       } catch (error) {
         console.error('Error fetching event:', error);
         notFound();
@@ -135,7 +138,7 @@ export default function EventPage({ params }: Props) {
 
         <div className="w-full mt-4">
           <Tabs
-            comments={event.comments!}
+            comments={comment}
             assistants={event.assistants}
             speakers={event.speakers}
           />

@@ -17,7 +17,7 @@ export default function SignUpPage() {
 
 	const handleRegister = async (data: any) => {
 		try {
-			const response = await axiosInstance.post('http://localhost:3000/register', data);
+			const response = await axiosInstance.post('http://localhost:3000/assistants', data);
 			console.log('User registered:', response.data);
 			// Redirigir o mostrar un mensaje de éxito según sea necesario
 		} catch (error) {

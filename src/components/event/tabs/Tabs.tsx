@@ -9,7 +9,7 @@ import { AxiosInstance } from 'axios';
 
 interface Props {
 	comments: Comment[];
-	assistants: string[];
+	assistants: Assistant[];
 	speakers: Speaker[];
 }
 
