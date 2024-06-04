@@ -50,6 +50,7 @@ export default function NewEventPage() {
 	};
 
 	const handleRegister = async (data: FormData) => {
+		console.log("eh hola")
 		try {
 			const city = data.city.split(', ');
 
@@ -74,7 +75,7 @@ export default function NewEventPage() {
 				speakers: speakers,
 				assistants: [],
 			};
-
+			console.log(event,"SAPODS")
 			const response = await axiosInstance.post('/events', event);
 			console.log('Event created:', response.data);
 			dispatch(clearSpeakers());
