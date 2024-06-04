@@ -52,6 +52,10 @@ export default function EventPage({ params }: Props) {
     (assistant) => assistant === user.id
   );
 
+  const onCommentAdded = (comment: any) => {
+    setComment([...comment, comment]);
+  }
+
   return (
     <div className="container mx-auto p-4 fade-in">
       <div className="flex flex-wrap items-center">
@@ -141,6 +145,8 @@ export default function EventPage({ params }: Props) {
             comments={comment}
             assistants={event.assistants}
             speakers={event.speakers}
+            ononCommentAdded={onCommentAdded}
+            eventId={id}
           />
         </div>
       </div>
