@@ -30,7 +30,10 @@ export default function LoginPage() {
 
 			router.push('/');
 		} catch (error) {
-			console.error('Error logging in:', error);
+			const response = await axiosInstance.post('http://localhost:3000/assistants/login', data);
+			const token = response.data;
+			localStorage.setItem('token', token);
+			router.push('/');
 		}
 	}
 
