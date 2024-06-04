@@ -72,7 +72,7 @@ export default function NewEventPage() {
 				categories: data.categories.split(', '),
 				organizing_faculties: faculties,
 				organizing_programs: programs,
-				speakers: speakers,
+				speakers: speakersAdded,
 				assistants: [],
 			};
 			console.log(event,"SAPODS")
@@ -93,11 +93,7 @@ export default function NewEventPage() {
 			<div className="w-full  xl:w-[1000px] flex flex-col justify-center text-left">
 				<Title title="Nuevo evento" />
 
-				<form
-					action=""
-					method="POST"
-					onSubmit={handleSubmit(handleRegister)}
-				>
+				<>
 					<div className="grid grid-cols-1 gap-2 sm:gap-5 sm:grid-cols-2">
 						<div className="flex flex-col gap-2 sm:gap-5 sm:grid-cols-2">
 							<div className="flex flex-col mb-2 gap-1">
@@ -256,13 +252,14 @@ export default function NewEventPage() {
 					</div>
 
 					<button
-						type="submit"
+						type="button"
+						onClick={handleSubmit(handleRegister)}
 						disabled={isSubmitting}
 						className="mt-5 p-2 bg-blue-500 text-white rounded-md"
 					>
 						Crear evento
 					</button>
-				</form>
+				</>
 			</div>
 		</div>
 	);
