@@ -54,7 +54,7 @@ export const NewSpeakerEmployeeForm = ({ speakers }: AddSpeakerProps) => {
 				items={speakers}
 			/> */}
 
-			<select onChange={handleSelectedSpeaker}>
+			<select onChange={handleSelectedSpeaker} className="p-2 border rounded-md bg-white focus:outline-none">
 				<option value="">Selecciona un conferencista</option>
 				{speakers.map((speaker) => (
 					<option

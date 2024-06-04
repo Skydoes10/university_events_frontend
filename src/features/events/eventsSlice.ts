@@ -31,7 +31,7 @@ export const eventsSlice = createSlice({
 		getEvent: (state, action: PayloadAction<Event>) => {
 			state.event = action.payload;
 		},
-		addEvent: (state, action: PayloadAction<Event>) => {
+		addEvent: (state, action: PayloadAction<Event>) => {			
 			state.events.push(action.payload);
 		},
 		deleteEvent: (state, action: PayloadAction<string>) => {
@@ -40,6 +40,7 @@ export const eventsSlice = createSlice({
 			);
 		},
 		addSpeaker: (state, action: PayloadAction<any>) => {
+			console.log('payload', action.payload);
 			state.speakers.push(action.payload);
 		},
 		clearSpeakers: (state) => {
