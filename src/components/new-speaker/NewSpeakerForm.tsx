@@ -58,7 +58,7 @@ export const NewSpeakerForm = () => {
 				department: city[1],
 				country: city[2],
 			},
-			relationship_type: data.relationship_type,
+			relationshipType: data.relationship_type,
 		};
 
 		console.log('speaker', speaker);

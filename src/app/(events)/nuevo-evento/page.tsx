@@ -11,17 +11,22 @@ import { City, Organizer, Speaker, SpeakerEmployee } from '@/interfaces';
 import axiosInstance from '../../../utils/axiosInstance';
 import { useFetchData } from '@/hooks';
 import { useDispatch, useSelector } from 'react-redux';
-import { EventsState, clearSpeakers } from '../../../features/events/eventsSlice';
+import {
+	EventsState,
+	clearSpeakers,
+} from '../../../features/events/eventsSlice';
 
-const transformSpeakerEmployeeToSpeaker = (employee: SpeakerEmployee): Speaker => {
+const transformSpeakerEmployeeToSpeaker = (
+	employee: SpeakerEmployee
+): Speaker => {
 	return {
 		identifier: employee.identificacion,
 		fullName: `${employee.nombres} ${employee.apellidos}`,
 		email: employee.email,
-		city: '',  // Ajusta según sea necesario
-		relationship_type: '',  // Ajusta según sea necesario
+		city: '', // Ajusta según sea necesario
+		relationshipType: '', // Ajusta según sea necesario
 	};
-}
+};
 
 type FormData = z.infer<typeof newEventSchema>;
 
@@ -30,13 +35,13 @@ export default function NewEventPage() {
 	const { data: organizingPrograms } = useFetchData('/programs');
 	const { data: speakers } = useFetchData('/employees');
 
-	console.log("Sapohpta", speakers);
-	
+	console.log('Sapohpta', speakers);
 
 	const dispatch = useDispatch();
-	const speakersAdded = useSelector((state: { events: EventsState }) => state.events.speakers);
+	const speakersAdded = useSelector(
+		(state: { events: EventsState }) => state.events.speakers
+	);
 
-	const { createEvent } = useEvents();
 	const router = useRouter();
 
 	const [title, setTitle] = useState('');
@@ -61,7 +66,9 @@ export default function NewEventPage() {
 	useEffect(() => {
 		const fetchCities = async () => {
 			try {
-				const response = await axiosInstance.get('http://localhost:3000/cities');
+				const response = await axiosInstance.get(
+					'http://localhost:3000/cities'
+				);
 				setCities(response.data);
 			} catch (error) {
 				console.error('Error fetching cities:', error);
@@ -71,13 +78,10 @@ export default function NewEventPage() {
 		fetchCities();
 	}, []);
 
-	
-	
 	const handleRegister = async () => {
-
 		const cityParts = city.split(', ');
 
-		//const newSpeakerFormat = 
+		//const newSpeakerFormat =
 		const speakers = speakersAdded.map((speaker: any) => {
 			if (speaker.nombres) {
 				return {
@@ -91,16 +95,18 @@ export default function NewEventPage() {
 					},
 					relationshipType: speaker.tipo_empleado,
 				};
+			} else {
+				return speaker;
 			}
 		});
 
-		console.log("eeeeeeeeeeee", speakers);
-		
+		console.log('eeeeeeeeeeee', speakers);
+
 		try {
 			const token = localStorage.getItem('token');
-			console.log(token)
+			console.log(token);
 			const cityParts = city.split(', ');
-			
+
 			const event = {
 				title,
 				description,
@@ -123,14 +129,17 @@ export default function NewEventPage() {
 				assistants: [],
 			};
 
-			console.log(event,"Sapohpta")
+			console.log(event, 'Sapohpta');
 
 			const response = await axiosInstance.post('/events', event);
 			console.log('Event created:', response.data);
 			dispatch(clearSpeakers());
 			router.push('/');
 		} catch (error: any) {
-			console.error('Error creating event:', error.response?.data || error.message);
+			console.error(
+				'Error creating event:',
+				error.response?.data || error.message
+			);
 		}
 	};
 
@@ -222,7 +231,10 @@ export default function NewEventPage() {
 							>
 								<option value="">Seleccionar</option>
 								{cities.map((city, index) => (
-									<option key={index} value={`${city.name}, ${city.department}, ${city.country}`}>
+									<option
+										key={index}
+										value={`${city.name}, ${city.department}, ${city.country}`}
+									>
 										{`${city.name}, ${city.department}, ${city.country}`}
 									</option>
 								))}
