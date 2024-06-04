@@ -30,6 +30,9 @@ export default function NewEventPage() {
 	const { data: organizingPrograms } = useFetchData('/programs');
 	const { data: speakers } = useFetchData('/employees');
 
+	console.log("Sapohpta", speakers);
+	
+
 	const dispatch = useDispatch();
 	const speakersAdded = useSelector((state: { events: EventsState }) => state.events.speakers);
 
@@ -72,6 +75,8 @@ export default function NewEventPage() {
 	
 	const handleRegister = async () => {
 
+		const cityParts = city.split(', ');
+
 		//const newSpeakerFormat = 
 		const speakers = speakersAdded.map((speaker: any) => {
 			if (speaker.nombres) {
@@ -79,11 +84,18 @@ export default function NewEventPage() {
 					identifier: speaker.identificacion,
 					fullName: `${speaker.nombres} ${speaker.apellidos}`,
 					email: speaker.email,
-					city: speaker.ciudad,
-					relationship_type: speaker.tipo_relacion,
+					city: {
+						name: cityParts[0],
+						department: cityParts[1],
+						country: cityParts[2],
+					},
+					relationshipType: speaker.tipo_relacion,
 				};
 			}
 		});
+
+		console.log("eeeeeeeeeeee", speakers);
+		
 		try {
 			const token = localStorage.getItem('token');
 			console.log(token)
