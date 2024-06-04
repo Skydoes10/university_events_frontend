@@ -25,7 +25,7 @@ export default function LoginPage() {
 	async function onSubmit(data: FormData) {
 		try {
 			const response = await axiosInstance.post('http://localhost:3000/login', data);
-			const token = response.data.token;
+			const token = response.data;
 			localStorage.setItem('token', token);
 
 			router.push('/');
