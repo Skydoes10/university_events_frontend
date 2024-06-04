@@ -1,60 +1,84 @@
 'use client';
 import * as z from 'zod';
-import { newSpeakerEmployeeSchema } from '@/schemas';
+// import { newSpeakerEmployeeSchema } from '@/schemas';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useEvents } from '@/hooks';
+import { SelectorEmployee } from '../ui/selector/SelectorEmployee';
+import { SpeakerEmployee } from '@/interfaces';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { addSpeaker } from '@/features/events/eventsSlice';
 
-type FormData = z.infer<typeof newSpeakerEmployeeSchema>;
+interface AddSpeakerProps {
+	speakers: SpeakerEmployee[];
+}
 
-export const NewSpeakerEmployeeForm = () => {
-	const { fetchSpeaker } = useEvents();
-	const {
-		handleSubmit,
-		register,
-		formState: { errors, isSubmitting, isDirty },
-	} = useForm<FormData>({
-		resolver: zodResolver(newSpeakerEmployeeSchema),
-	});
+// type FormData = z.infer<typeof newSpeakerEmployeeSchema>;
 
-	async function onSubmit(data: FormData) {
-		console.log(isSubmitting);
-		console.log(data);
+export const NewSpeakerEmployeeForm = ({ speakers }: AddSpeakerProps) => {
+	const dispatch = useDispatch();
+	// const { fetchSpeaker } = useEvents();
 
+	const [selectedSpeaker, setSelectedSpeaker] =
+		useState<SpeakerEmployee | null>(null);
+	console.log('aaaaaaa', selectedSpeaker);
+
+	function onSubmit() {
 		try {
-			await fetchSpeaker(data.email);
+			// await fetchSpeaker(data.email);
+			dispatch(addSpeaker(selectedSpeaker));
+			// addSpeaker(selectedSpeaker);
 		} catch (error: any) {
 			console.log(error);
 		}
 	}
 
+	// const handleSelectedSpeaker = (selected: SpeakerEmployee[]) => {
+	// 	setSelectedSpeaker(selected.length > 0 ? selected[0] : null);
+	// };
+
+	const handleSelectedSpeaker = (e: any) => {
+		const speaker = speakers.find(
+			(speaker) =>
+				speaker.nombres + ' ' + speaker.apellidos === e.target.value
+		);
+		setSelectedSpeaker(speaker!);
+	};
+
 	return (
-		<form action="" method="GET" onSubmit={handleSubmit(onSubmit)}>
-			<div className="flex flex-col gap-1 fade-in">
-				<span>Correo electrónico</span>
-				<input
-					{...(register('email'), { required: true })}
-					id="email"
-					name="email"
-					type="email"
-					className="p-2 border rounded-md bg-white focus:outline-none"
-				/>
-				{errors?.email && (
-					<span className="text-red-500 text-sm">
-						{errors?.email?.message}
-					</span>
-				)}
-			</div>
+		<>
+			{/* <SelectorEmployee
+				name="Conferencista"
+				onChange={handleSelectedSpeaker}
+				items={speakers}
+			/> */}
+
+			<select onChange={handleSelectedSpeaker}>
+				<option value="">Selecciona un conferencista</option>
+				{speakers.map((speaker) => (
+					<option
+						key={speaker.identificacion}
+						value={speaker.nombres + ' ' + speaker.apellidos}
+					>
+						{speaker.nombres.charAt(0) +
+							speaker.nombres.slice(1).toLowerCase() +
+							' ' +
+							speaker.apellidos.charAt(0) +
+							speaker.apellidos.slice(1).toLowerCase()}
+					</option>
+				))}
+			</select>
 
 			<div className="flex justify-end pt-20">
 				<button
-					type="submit"
-					disabled={!isDirty || isSubmitting}
-					className="focus:outline-none px-4 btn-primary p-3 ml-3 rounded-lg text-white hover:bg-blue-700"
+					type="button"
+					onClick={onSubmit}
+					className="focus:outline-none px-4 btn-primary p-3 ml-3 rounded-lg text-white hover:bg-blue-700 cursor-pointer"
 				>
 					Añadir
 				</button>
 			</div>
-		</form>
+		</>
 	);
 };

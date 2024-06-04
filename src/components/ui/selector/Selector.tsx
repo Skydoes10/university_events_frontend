@@ -1,6 +1,6 @@
 'use client';
 import React, { useState, useEffect, useRef } from 'react';
-import { Organizer } from '@/interfaces';
+import { Organizer, Speaker } from '@/interfaces';
 
 interface SelectorProps {
     name: string;

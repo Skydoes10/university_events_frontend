@@ -1,8 +1,8 @@
-import { Speaker } from '@/interfaces';
+import { Speaker, SpeakerEmployee } from '@/interfaces';
 import { SpeakerItem } from './Speaker';
 
 interface Props {
-	speakers: Speaker[];
+	speakers: Speaker[] | SpeakerEmployee[];
 	className?: string;
 }
 

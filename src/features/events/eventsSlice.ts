@@ -1,10 +1,12 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { City, Event, Organizer, Speaker } from '@/interfaces';
+import { City, Event, Organizer, Speaker, SpeakerEmployee } from '@/interfaces';
+import { WritableDraft } from 'immer';
+import { clear } from 'console';
 
 export interface EventsState {
 	events: Event[];
 	event: Event | null;
-	speakers: Speaker[];
+	speakers: Speaker[] | SpeakerEmployee[];
 	cities: City[];
 	organizingFaculties: Organizer[];
 	organizingPrograms: Organizer[];
@@ -37,8 +39,11 @@ export const eventsSlice = createSlice({
 				(event) => event.id !== action.payload
 			);
 		},
-		addSpeaker: (state, action: PayloadAction<Speaker>) => {
+		addSpeaker: (state, action: PayloadAction<any>) => {
 			state.speakers.push(action.payload);
+		},
+		clearSpeakers: (state) => {
+			state.speakers = [];
 		},
 		getCities: (state, action: PayloadAction<City[]>) => {
 			state.cities = action.payload;
@@ -61,6 +66,7 @@ export const {
 	getEvent,
 	addEvent,
 	deleteEvent,
+	clearSpeakers,
 } = eventsSlice.actions;
 
 export default eventsSlice.reducer;
