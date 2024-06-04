@@ -49,7 +49,7 @@ export default function EventPage({ params }: Props) {
   const date = moment(event?.dateTime).format('DD MMM YYYY HH:mm a');
 
   const isAssistant = event?.assistants.find(
-    (assistant) => assistant.id === user.id
+    (assistant) => assistant === user.id
   );
 
   return (
