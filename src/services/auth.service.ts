@@ -43,7 +43,7 @@ export class AuthService {
 
 	async registerEmployee(user: RegisterEmployee) {
 		try {
-			const res = await this.instance.post('/register', {
+			const res = await this.instance.post('/assistants/employee', {
 				email: user.email,
 				password: user.password,
 			});

@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import axiosInstance from '@/utils/axiosInstance'
 
 interface Props {
-    assistant: string;
+    assistant: Assistant;
 }
 
 export const AssistantItem = ( { assistant }: Props) => {

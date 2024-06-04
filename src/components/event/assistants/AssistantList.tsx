@@ -5,7 +5,7 @@ import { AssistantItem } from './Assistant';
 import { useEffect } from 'react';
 
 interface Props {
-    assistants: string[];
+    assistants: Assistant[];
 }
 
 export const AssistantList = ({ assistants }: Props) => {
