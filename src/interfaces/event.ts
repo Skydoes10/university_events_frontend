@@ -13,7 +13,7 @@ export interface Event {
 	organizing_faculties: Organizer[];
 	organizing_programs: Organizer[];
 	speakers: Speaker[];
-	assistants: Assistant[];
+	assistants: string[];
 	event_location: EventLocation[]
 	comments?: Comment[];
 }

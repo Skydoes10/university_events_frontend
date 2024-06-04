@@ -222,7 +222,13 @@ export default function NewEventPage() {
                         />
                     </div>
 
-                    <AddSpeaker speakers={speakers} />
+                    <div className="flex flex-col mb-2 gap-2">
+							<span>
+								Conferencistas
+								<AddSpeaker speakers={speakers} />
+							</span>
+							<SpeakerList speakers={speakers} />
+					</div>
 
                     <button
                         type="submit"
