@@ -6,7 +6,7 @@ export interface User {
 	fullName: string;
 	email: string;
 	city: string | City;
-	relationship_type: string;
+	relationshipType: string;
 	isAdmin?: boolean;
 }
 

@@ -53,6 +53,10 @@ export default function EventPage({ params }: Props) {
     (assistant) => assistant === user.id
   );
 
+  const onCommentAdded = (comment: any) => {
+    setComment([...comment, comment]);
+  }
+
   const handleAttendEvent = async () => {
     try {
       const token = localStorage.getItem('token'); 
@@ -156,6 +160,8 @@ export default function EventPage({ params }: Props) {
             comments={comment}
             assistants={event.assistants}
             speakers={event.speakers}
+            ononCommentAdded={onCommentAdded}
+            eventId={id}
           />
         </div>
       </div>
