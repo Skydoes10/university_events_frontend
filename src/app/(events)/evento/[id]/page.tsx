@@ -160,7 +160,7 @@ export default function EventPage({ params }: Props) {
             comments={comment}
             assistants={event.assistants}
             speakers={event.speakers}
-            ononCommentAdded={onCommentAdded}
+            onCommentAdded={onCommentAdded}
             eventId={id}
           />
         </div>
