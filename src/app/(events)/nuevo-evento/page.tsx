@@ -71,7 +71,7 @@ export default function NewEventPage() {
 				categories: data.categories.split(', '),
 				organizing_faculties: faculties,
 				organizing_programs: programs,
-				speakers: speakers,
+				speakers: speakersAdded,
 				assistants: [],
 			};
 
