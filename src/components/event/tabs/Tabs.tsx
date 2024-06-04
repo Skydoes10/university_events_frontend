@@ -11,9 +11,11 @@ interface Props {
 	comments: Comment[];
 	assistants: Assistant[];
 	speakers: Speaker[];
+	onCommentAdded: (comment: any) => void;
+	eventId: string;
 }
 
-export const Tabs = ({ comments, assistants, speakers }: Props) => {
+export const Tabs = ({ comments, assistants, speakers, onCommentAdded, eventId }: Props) => {
 	const [openTab, setOpenTab] = useState<number>(1);
 
 	return (
@@ -47,7 +49,7 @@ export const Tabs = ({ comments, assistants, speakers }: Props) => {
 			</div>
 
 			{openTab === 1 && (
-				<CommentList comments={comments} />
+				<CommentList comments={comments} onCommentAdded={onCommentAdded} eventId={eventId} />
 				// <div className="transition-all duration-300 bg-white p-4 rounded-lg shadow-md border-l-4">
 				// </div>
 			)}

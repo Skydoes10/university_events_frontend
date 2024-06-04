@@ -19,10 +19,10 @@ export default function SignUpPage() {
 		try {
 			const response = await axiosInstance.post('http://localhost:3000/assistants', data);
 			console.log('User registered:', response.data);
-			// Redirigir o mostrar un mensaje de éxito según sea necesario
+			const token = response.data;
+			localStorage.setItem('token', token);
 		} catch (error) {
 			console.error('Error registering user:', error);
-			// Manejar errores, mostrar mensaje de error, etc.
 		}
 	};
 

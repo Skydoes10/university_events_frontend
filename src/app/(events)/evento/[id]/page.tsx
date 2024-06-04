@@ -10,6 +10,7 @@ import { Tabs, Title } from '@/components';
 import { User, Event, Comment } from '@/interfaces';
 import { UserState } from '@/features/user/userSlice';
 import { EventsState } from '@/features/events/eventsSlice';
+import router from 'next/router';
 
 interface Props {
   params: {
@@ -52,6 +53,24 @@ export default function EventPage({ params }: Props) {
     (assistant) => assistant === user.id
   );
 
+  const onCommentAdded = (comment: any) => {
+    setComment([...comment, comment]);
+  }
+
+  const handleAttendEvent = async () => {
+    try {
+      const token = localStorage.getItem('token'); 
+      const response = await axiosInstance.post(`/events/assistant/${id}`, {}, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      console.log('Attend event response:', response.data);
+    } catch (error) {
+      console.error('Error attending event:', error);
+    }
+  };
+
   return (
     <div className="container mx-auto p-4 fade-in">
       <div className="flex flex-wrap items-center">
@@ -62,7 +81,7 @@ export default function EventPage({ params }: Props) {
             Asistirás a este evento
           </span>
         ) : (
-          <button className="bg-blue-500 text-white font-bold py-1 px-2 rounded-lg text-sm ml-4">
+          <button onClick={handleAttendEvent} className="bg-blue-500 text-white font-bold py-1 px-2 rounded-lg text-sm ml-4">
             Asistir a este evento
           </button>
         )}
@@ -141,6 +160,8 @@ export default function EventPage({ params }: Props) {
             comments={comment}
             assistants={event.assistants}
             speakers={event.speakers}
+            ononCommentAdded={onCommentAdded}
+            eventId={id}
           />
         </div>
       </div>

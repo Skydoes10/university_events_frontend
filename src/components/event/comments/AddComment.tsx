@@ -5,7 +5,7 @@ import axiosInstance from "@/utils/axiosInstance";
 
 interface Props {
 	eventId: string;
-	onCommentAdded: (comment: Comment) => void;
+	onCommentAdded: (comment: any) => void;
 }
 
 export const AddComment = ({ eventId, onCommentAdded }: Props) => {
@@ -33,6 +33,8 @@ export const AddComment = ({ eventId, onCommentAdded }: Props) => {
 					},
 				}
 			);
+			console.log('Comment added:', response.data);
+			
 			onCommentAdded(response.data);
 			setText('');
 		} catch (error) {
