@@ -12,4 +12,5 @@ export interface SpeakerEmployee {
 	nombres: string;
 	tipo_contratacion: string;
 	tipo_empleado: string;
+	city: string;
 }
