@@ -89,7 +89,7 @@ export default function NewEventPage() {
 						department: cityParts[1],
 						country: cityParts[2],
 					},
-					relationshipType: speaker.tipo_relacion,
+					relationshipType: speaker.tipo_empleado,
 				};
 			}
 		});
