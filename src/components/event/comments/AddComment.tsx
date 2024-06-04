@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import axiosInstance from '@/utils/axiosInstance';
+import { useState } from "react";
+import axiosInstance from "@/utils/axiosInstance";
 
 interface Props {
 	eventId: string;
