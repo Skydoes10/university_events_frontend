@@ -13,10 +13,10 @@ export const newSpeakerSchema = z.object({
 		.min(1, { message: 'El tipo de relación es requerido' }),
 });
 
-export const newSpeakerEmployeeSchema = z.object({
-	email: z.string().min(1, { message: 'El email es requerido' }).email(),
-});
+// export const newSpeakerEmployeeSchema = z.object({
+// 	email: z.string().min(1, { message: 'El email es requerido' }).email(),
+// });
 
 export type NewSpeaker = z.infer<typeof newSpeakerSchema>;
 
-export type NewSpeakerEmployee = z.infer<typeof newSpeakerEmployeeSchema>;
+// export type NewSpeakerEmployee = z.infer<typeof newSpeakerEmployeeSchema>;
