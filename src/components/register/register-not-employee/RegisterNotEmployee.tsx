@@ -1,4 +1,5 @@
 'use client';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -12,6 +13,12 @@ interface RegisterNotEmployeeProps {
 	onRegister: (data: FormData) => Promise<void>;
 }
 
+interface City {
+	name: string;
+	department: string;
+	country: string;
+}
+
 export const RegisterNotEmployee = ({ onRegister }: RegisterNotEmployeeProps) => {
 	const router = useRouter();
 	const {
@@ -21,6 +28,21 @@ export const RegisterNotEmployee = ({ onRegister }: RegisterNotEmployeeProps) =>
 	} = useForm<FormData>({
 		resolver: zodResolver(registerNotEmployeeSchema),
 	});
+
+	const [cities, setCities] = useState<City[]>([]);
+
+	useEffect(() => {
+		const fetchCities = async () => {
+			try {
+				const response = await axiosInstance.get('http://localhost:3000/cities');
+				setCities(response.data);
+			} catch (error) {
+				console.error('Error fetching cities:', error);
+			}
+		};
+
+		fetchCities();
+	}, []);
 
 	async function onSubmit(data: FormData) {
 		try {
@@ -146,7 +168,11 @@ export const RegisterNotEmployee = ({ onRegister }: RegisterNotEmployeeProps) =>
 						className="p-2 border rounded-md bg-gray-200 focus:outline-none"
 					>
 						<option value="">Seleccionar</option>
-						<option value="cali">Cali, Valle del Cauca, Colombia</option>
+						{cities.map((city, index) => (
+							<option key={index} value={`${city.name}, ${city.department}, ${city.country}`}>
+								{`${city.name}, ${city.department}, ${city.country}`}
+							</option>
+						))}
 					</select>
 					{errors?.city && (
 						<span className="text-red-500 text-sm">
@@ -180,6 +206,5 @@ export const RegisterNotEmployee = ({ onRegister }: RegisterNotEmployeeProps) =>
 				Registrarse
 			</button>
 		</form>
-
 	);
 };
