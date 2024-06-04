@@ -64,6 +64,11 @@ export default function NewEventPage() {
 	};
 
 	useEffect(() => {
+		const token = localStorage.getItem('token');
+		const role = localStorage.getItem('role');
+
+		if(token!=null && role === "Admin"){
+
 		const fetchCities = async () => {
 			try {
 				const response = await axiosInstance.get(
@@ -76,6 +81,9 @@ export default function NewEventPage() {
 		};
 
 		fetchCities();
+	}else{
+		router.push("/")
+	}
 	}, []);
 
 	const handleRegister = async () => {

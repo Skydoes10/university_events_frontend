@@ -6,6 +6,7 @@ import { titleFonts } from '@/config/fonts';
 export const Navbar = () => {
 	const handleLogout = () => {
 		localStorage.setItem('token', "");
+		localStorage.setItem('role', "");
 	};
 
 	return (

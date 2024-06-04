@@ -27,12 +27,14 @@ export default function LoginPage() {
 			const response = await axiosInstance.post('http://localhost:3000/login', data);
 			const token = response.data;
 			localStorage.setItem('token', token);
+			localStorage.setItem('role', 'Admin');
 
 			router.push('/');
 		} catch (error) {
 			const response = await axiosInstance.post('http://localhost:3000/assistants/login', data);
 			const token = response.data;
 			localStorage.setItem('token', token);
+			localStorage.setItem('role', 'Assistant');
 			router.push('/');
 		}
 	}
